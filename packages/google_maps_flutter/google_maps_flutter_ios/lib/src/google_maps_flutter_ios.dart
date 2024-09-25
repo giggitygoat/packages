@@ -509,7 +509,8 @@ class GoogleMapsFlutterIOS extends GoogleMapsFlutterPlatform {
       'polygonsToAdd': serializePolygonSet(mapObjects.polygons),
       'polylinesToAdd': serializePolylineSet(mapObjects.polylines),
       'circlesToAdd': serializeCircleSet(mapObjects.circles),
-      'groundOverlaysToAdd': serializeGroundOverlaySet(mapObjects.groundOverlays),
+      'groundOverlaysToAdd':
+          serializeGroundOverlaySet(mapObjects.groundOverlays),
       'tileOverlaysToAdd': serializeTileOverlaySet(mapObjects.tileOverlays),
     };
 

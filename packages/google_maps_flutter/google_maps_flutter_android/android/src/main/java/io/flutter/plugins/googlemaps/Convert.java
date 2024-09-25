@@ -900,6 +900,11 @@ class Convert {
     if (consumeTapEvents != null) {
       sink.setConsumeTapEvents(toBoolean(consumeTapEvents));
     }
+    final Object anchor = data.get("anchor");
+    if (anchor != null) {
+      final List<?> anchorData = toList(anchor);
+      sink.setAnchor(toFloat(anchorData.get(0)), toFloat(anchorData.get(1)));
+    }
     final Object transparency = data.get("transparency");
     if (transparency != null) {
       sink.setTransparency(toFloat(transparency));

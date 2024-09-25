@@ -22,4 +22,6 @@ interface GroundOverlayOptionsSink {
   void setBearing(float bearing);
 
   void setTransparency(float transparency);
+  
+  void setAnchor(float u, float v);
 }

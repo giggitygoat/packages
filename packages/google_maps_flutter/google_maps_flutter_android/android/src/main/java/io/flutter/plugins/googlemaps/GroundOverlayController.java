@@ -58,6 +58,11 @@ class GroundOverlayController implements GroundOverlayOptionsSink {
   }
 
   @Override
+  public void setAnchor(float u, float v) {
+    //groundOverlay.setAnchor(u, v);
+  }
+
+  @Override
   public void setIcon(BitmapDescriptor bitmapDescriptor) {
     groundOverlay.setImage(bitmapDescriptor);
   }

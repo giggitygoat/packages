@@ -47,6 +47,10 @@ class GroundOverlayBuilder implements GroundOverlayOptionsSink {
     public void setVisible(boolean visible) {
       groundOverlayOptions.visible(visible);
     }
+  @Override
+  public void setAnchor(float u, float v) {
+    groundOverlayOptions.anchor(u, v);
+  }
 
     @Override
     public void setZIndex(float zIndex) {
