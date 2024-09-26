@@ -140,7 +140,7 @@ class GoogleMapController
     this.circlesController = new CirclesController(flutterApi, density);
     this.heatmapsController = new HeatmapsController();
     this.tileOverlaysController = new TileOverlaysController(flutterApi);
-    this.groundOverlaysController = new GroundOverlaysController(flutterApi);
+    this.groundOverlaysController = new GroundOverlaysController(flutterApi, assetManager, density);
   }
 
   // Constructor for testing purposes only

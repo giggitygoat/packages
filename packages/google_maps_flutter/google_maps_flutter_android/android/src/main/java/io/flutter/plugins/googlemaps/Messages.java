@@ -3453,6 +3453,344 @@ public class Messages {
     }
   }
 
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class PlatformGroundOverlay {
+    private @NonNull String groundOverlayId;
+
+    public @NonNull String getGroundOverlayId() {
+      return groundOverlayId;
+    }
+
+    public void setGroundOverlayId(@NonNull String setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"groundOverlayId\" is null.");
+      }
+      this.groundOverlayId = setterArg;
+    }
+
+    private @NonNull Boolean consumeTapEvents;
+
+    public @NonNull Boolean getConsumeTapEvents() {
+      return consumeTapEvents;
+    }
+
+    public void setConsumeTapEvents(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"consumeTapEvents\" is null.");
+      }
+      this.consumeTapEvents = setterArg;
+    }
+
+    private @NonNull PlatformLatLng position;
+
+    public @NonNull PlatformLatLng getPosition() {
+      return position;
+    }
+
+    public void setPosition(@NonNull PlatformLatLng setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"position\" is null.");
+      }
+      this.position = setterArg;
+    }
+
+    private @NonNull Long zIndex;
+
+    public @NonNull Long getZIndex() {
+      return zIndex;
+    }
+
+    public void setZIndex(@NonNull Long setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"zIndex\" is null.");
+      }
+      this.zIndex = setterArg;
+    }
+
+    private @NonNull Boolean visible;
+
+    public @NonNull Boolean getVisible() {
+      return visible;
+    }
+
+    public void setVisible(@NonNull Boolean setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"visible\" is null.");
+      }
+      this.visible = setterArg;
+    }
+
+    private @NonNull Object icon;
+
+    public @NonNull Object getIcon() {
+      return icon;
+    }
+
+    public void setIcon(@NonNull Object setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"icon\" is null.");
+      }
+      this.icon = setterArg;
+    }
+
+    private @NonNull PlatformLatLngBounds bounds;
+
+    public @NonNull PlatformLatLngBounds getBounds() {
+      return bounds;
+    }
+
+    public void setBounds(@NonNull PlatformLatLngBounds setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"bounds\" is null.");
+      }
+      this.bounds = setterArg;
+    }
+
+    private @NonNull Double width;
+
+    public @NonNull Double getWidth() {
+      return width;
+    }
+
+    public void setWidth(@NonNull Double setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"width\" is null.");
+      }
+      this.width = setterArg;
+    }
+
+    private @NonNull Double height;
+
+    public @NonNull Double getHeight() {
+      return height;
+    }
+
+    public void setHeight(@NonNull Double setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"height\" is null.");
+      }
+      this.height = setterArg;
+    }
+
+    private @NonNull Double bearing;
+
+    public @NonNull Double getBearing() {
+      return bearing;
+    }
+
+    public void setBearing(@NonNull Double setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"bearing\" is null.");
+      }
+      this.bearing = setterArg;
+    }
+
+    private @NonNull PlatformOffset anchor;
+
+    public @NonNull PlatformOffset getAnchor() {
+      return anchor;
+    }
+
+    public void setAnchor(@NonNull PlatformOffset setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"anchor\" is null.");
+      }
+      this.anchor = setterArg;
+    }
+
+    private @NonNull Double opacity;
+
+    public @NonNull Double getOpacity() {
+      return opacity;
+    }
+
+    public void setOpacity(@NonNull Double setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"opacity\" is null.");
+      }
+      this.opacity = setterArg;
+    }
+
+    /** Constructor is non-public to enforce null safety; use Builder. */
+    PlatformGroundOverlay() {}
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) { return true; }
+      if (o == null || getClass() != o.getClass()) { return false; }
+      PlatformGroundOverlay that = (PlatformGroundOverlay) o;
+      return groundOverlayId.equals(that.groundOverlayId) && consumeTapEvents.equals(that.consumeTapEvents) && position.equals(that.position) && zIndex.equals(that.zIndex) && visible.equals(that.visible) && icon.equals(that.icon) && bounds.equals(that.bounds) && width.equals(that.width) && height.equals(that.height) && bearing.equals(that.bearing) && anchor.equals(that.anchor) && opacity.equals(that.opacity);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(groundOverlayId, consumeTapEvents, position, zIndex, visible, icon, bounds, width, height, bearing, anchor, opacity);
+    }
+
+    public static final class Builder {
+
+      private @Nullable String groundOverlayId;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setGroundOverlayId(@NonNull String setterArg) {
+        this.groundOverlayId = setterArg;
+        return this;
+      }
+
+      private @Nullable Boolean consumeTapEvents;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setConsumeTapEvents(@NonNull Boolean setterArg) {
+        this.consumeTapEvents = setterArg;
+        return this;
+      }
+
+      private @Nullable PlatformLatLng position;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setPosition(@NonNull PlatformLatLng setterArg) {
+        this.position = setterArg;
+        return this;
+      }
+
+      private @Nullable Long zIndex;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setZIndex(@NonNull Long setterArg) {
+        this.zIndex = setterArg;
+        return this;
+      }
+
+      private @Nullable Boolean visible;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setVisible(@NonNull Boolean setterArg) {
+        this.visible = setterArg;
+        return this;
+      }
+
+      private @Nullable Object icon;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setIcon(@NonNull Object setterArg) {
+        this.icon = setterArg;
+        return this;
+      }
+
+      private @Nullable PlatformLatLngBounds bounds;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setBounds(@NonNull PlatformLatLngBounds setterArg) {
+        this.bounds = setterArg;
+        return this;
+      }
+
+      private @Nullable Double width;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setWidth(@NonNull Double setterArg) {
+        this.width = setterArg;
+        return this;
+      }
+
+      private @Nullable Double height;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setHeight(@NonNull Double setterArg) {
+        this.height = setterArg;
+        return this;
+      }
+
+      private @Nullable Double bearing;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setBearing(@NonNull Double setterArg) {
+        this.bearing = setterArg;
+        return this;
+      }
+
+      private @Nullable PlatformOffset anchor;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setAnchor(@NonNull PlatformOffset setterArg) {
+        this.anchor = setterArg;
+        return this;
+      }
+
+      private @Nullable Double opacity;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setOpacity(@NonNull Double setterArg) {
+        this.opacity = setterArg;
+        return this;
+      }
+
+      public @NonNull PlatformGroundOverlay build() {
+        PlatformGroundOverlay pigeonReturn = new PlatformGroundOverlay();
+        pigeonReturn.setGroundOverlayId(groundOverlayId);
+        pigeonReturn.setConsumeTapEvents(consumeTapEvents);
+        pigeonReturn.setPosition(position);
+        pigeonReturn.setZIndex(zIndex);
+        pigeonReturn.setVisible(visible);
+        pigeonReturn.setIcon(icon);
+        pigeonReturn.setBounds(bounds);
+        pigeonReturn.setWidth(width);
+        pigeonReturn.setHeight(height);
+        pigeonReturn.setBearing(bearing);
+        pigeonReturn.setAnchor(anchor);
+        pigeonReturn.setOpacity(opacity);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<>(12);
+      toListResult.add(groundOverlayId);
+      toListResult.add(consumeTapEvents);
+      toListResult.add(position);
+      toListResult.add(zIndex);
+      toListResult.add(visible);
+      toListResult.add(icon);
+      toListResult.add(bounds);
+      toListResult.add(width);
+      toListResult.add(height);
+      toListResult.add(bearing);
+      toListResult.add(anchor);
+      toListResult.add(opacity);
+      return toListResult;
+    }
+
+    static @NonNull PlatformGroundOverlay fromList(@NonNull ArrayList<Object> pigeonVar_list) {
+      PlatformGroundOverlay pigeonResult = new PlatformGroundOverlay();
+      Object groundOverlayId = pigeonVar_list.get(0);
+      pigeonResult.setGroundOverlayId((String) groundOverlayId);
+      Object consumeTapEvents = pigeonVar_list.get(1);
+      pigeonResult.setConsumeTapEvents((Boolean) consumeTapEvents);
+      Object position = pigeonVar_list.get(2);
+      pigeonResult.setPosition((PlatformLatLng) position);
+      Object zIndex = pigeonVar_list.get(3);
+      pigeonResult.setZIndex((Long) zIndex);
+      Object visible = pigeonVar_list.get(4);
+      pigeonResult.setVisible((Boolean) visible);
+      Object icon = pigeonVar_list.get(5);
+      pigeonResult.setIcon(icon);
+      Object bounds = pigeonVar_list.get(6);
+      pigeonResult.setBounds((PlatformLatLngBounds) bounds);
+      Object width = pigeonVar_list.get(7);
+      pigeonResult.setWidth((Double) width);
+      Object height = pigeonVar_list.get(8);
+      pigeonResult.setHeight((Double) height);
+      Object bearing = pigeonVar_list.get(9);
+      pigeonResult.setBearing((Double) bearing);
+      Object anchor = pigeonVar_list.get(10);
+      pigeonResult.setAnchor((PlatformOffset) anchor);
+      Object opacity = pigeonVar_list.get(11);
+      pigeonResult.setOpacity((Double) opacity);
+      return pigeonResult;
+    }
+  }
+
   /**
    * Pigeon equivalent of CameraTargetBounds.
    *
@@ -4655,16 +4993,18 @@ public class Messages {
         case (byte) 157:
           return PlatformCluster.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 158:
-          return PlatformCameraTargetBounds.fromList((ArrayList<Object>) readValue(buffer));
+          return PlatformGroundOverlay.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 159:
-          return PlatformMapViewCreationParams.fromList((ArrayList<Object>) readValue(buffer));
+          return PlatformCameraTargetBounds.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 160:
-          return PlatformMapConfiguration.fromList((ArrayList<Object>) readValue(buffer));
+          return PlatformMapViewCreationParams.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 161:
-          return PlatformPoint.fromList((ArrayList<Object>) readValue(buffer));
+          return PlatformMapConfiguration.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 162:
-          return PlatformTileLayer.fromList((ArrayList<Object>) readValue(buffer));
+          return PlatformPoint.fromList((ArrayList<Object>) readValue(buffer));
         case (byte) 163:
+          return PlatformTileLayer.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 164:
           return PlatformZoomRange.fromList((ArrayList<Object>) readValue(buffer));
         default:
           return super.readValueOfType(type, buffer);
@@ -4760,23 +5100,26 @@ public class Messages {
       } else if (value instanceof PlatformCluster) {
         stream.write(157);
         writeValue(stream, ((PlatformCluster) value).toList());
-      } else if (value instanceof PlatformCameraTargetBounds) {
+      } else if (value instanceof PlatformGroundOverlay) {
         stream.write(158);
+        writeValue(stream, ((PlatformGroundOverlay) value).toList());
+      } else if (value instanceof PlatformCameraTargetBounds) {
+        stream.write(159);
         writeValue(stream, ((PlatformCameraTargetBounds) value).toList());
       } else if (value instanceof PlatformMapViewCreationParams) {
-        stream.write(159);
+        stream.write(160);
         writeValue(stream, ((PlatformMapViewCreationParams) value).toList());
       } else if (value instanceof PlatformMapConfiguration) {
-        stream.write(160);
+        stream.write(161);
         writeValue(stream, ((PlatformMapConfiguration) value).toList());
       } else if (value instanceof PlatformPoint) {
-        stream.write(161);
+        stream.write(162);
         writeValue(stream, ((PlatformPoint) value).toList());
       } else if (value instanceof PlatformTileLayer) {
-        stream.write(162);
+        stream.write(163);
         writeValue(stream, ((PlatformTileLayer) value).toList());
       } else if (value instanceof PlatformZoomRange) {
-        stream.write(163);
+        stream.write(164);
         writeValue(stream, ((PlatformZoomRange) value).toList());
       } else {
         super.writeValue(stream, value);

@@ -949,6 +949,82 @@ class PlatformCluster {
   }
 }
 
+class PlatformGroundOverlay {
+  PlatformGroundOverlay({
+    required this.groundOverlayId,
+    required this.consumeTapEvents,
+    required this.position,
+    required this.zIndex,
+    required this.visible,
+    required this.icon,
+    required this.bounds,
+    required this.width,
+    required this.height,
+    required this.bearing,
+    required this.anchor,
+    required this.opacity,
+  });
+
+  String groundOverlayId;
+
+  bool consumeTapEvents;
+
+  PlatformLatLng position;
+
+  int zIndex;
+
+  bool visible;
+
+  Object icon;
+
+  PlatformLatLngBounds bounds;
+
+  double width;
+
+  double height;
+
+  double bearing;
+
+  PlatformOffset anchor;
+
+  double opacity;
+
+  Object encode() {
+    return <Object?>[
+      groundOverlayId,
+      consumeTapEvents,
+      position,
+      zIndex,
+      visible,
+      icon,
+      bounds,
+      width,
+      height,
+      bearing,
+      anchor,
+      opacity,
+    ];
+  }
+
+  static PlatformGroundOverlay decode(Object result) {
+    result as List<Object?>;
+    return PlatformGroundOverlay(
+      groundOverlayId: result[0]! as String,
+      consumeTapEvents: result[1]! as bool,
+      position: result[2]! as PlatformLatLng,
+      zIndex: result[3]! as int,
+      visible: result[4]! as bool,
+      icon: result[5]!,
+      bounds: result[6]! as PlatformLatLngBounds,
+      width: result[7]! as double,
+      height: result[8]! as double,
+      bearing: result[9]! as double,
+      anchor: result[10]! as PlatformOffset,
+      opacity: result[11]! as double,
+    );
+  }
+}
+
 /// Pigeon equivalent of CameraTargetBounds.
 ///
 /// As with the Dart version, it exists to distinguish between not setting a
@@ -1339,23 +1415,26 @@ class _PigeonCodec extends StandardMessageCodec {
     }    else if (value is PlatformCluster) {
       buffer.putUint8(157);
       writeValue(buffer, value.encode());
-    }    else if (value is PlatformCameraTargetBounds) {
+    }    else if (value is PlatformGroundOverlay) {
       buffer.putUint8(158);
       writeValue(buffer, value.encode());
-    }    else if (value is PlatformMapViewCreationParams) {
+    }    else if (value is PlatformCameraTargetBounds) {
       buffer.putUint8(159);
       writeValue(buffer, value.encode());
-    }    else if (value is PlatformMapConfiguration) {
+    }    else if (value is PlatformMapViewCreationParams) {
       buffer.putUint8(160);
       writeValue(buffer, value.encode());
-    }    else if (value is PlatformPoint) {
+    }    else if (value is PlatformMapConfiguration) {
       buffer.putUint8(161);
       writeValue(buffer, value.encode());
-    }    else if (value is PlatformTileLayer) {
+    }    else if (value is PlatformPoint) {
       buffer.putUint8(162);
       writeValue(buffer, value.encode());
-    }    else if (value is PlatformZoomRange) {
+    }    else if (value is PlatformTileLayer) {
       buffer.putUint8(163);
+      writeValue(buffer, value.encode());
+    }    else if (value is PlatformZoomRange) {
+      buffer.putUint8(164);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -1428,16 +1507,18 @@ class _PigeonCodec extends StandardMessageCodec {
       case 157: 
         return PlatformCluster.decode(readValue(buffer)!);
       case 158: 
-        return PlatformCameraTargetBounds.decode(readValue(buffer)!);
+        return PlatformGroundOverlay.decode(readValue(buffer)!);
       case 159: 
-        return PlatformMapViewCreationParams.decode(readValue(buffer)!);
+        return PlatformCameraTargetBounds.decode(readValue(buffer)!);
       case 160: 
-        return PlatformMapConfiguration.decode(readValue(buffer)!);
+        return PlatformMapViewCreationParams.decode(readValue(buffer)!);
       case 161: 
-        return PlatformPoint.decode(readValue(buffer)!);
+        return PlatformMapConfiguration.decode(readValue(buffer)!);
       case 162: 
-        return PlatformTileLayer.decode(readValue(buffer)!);
+        return PlatformPoint.decode(readValue(buffer)!);
       case 163: 
+        return PlatformTileLayer.decode(readValue(buffer)!);
+      case 164: 
         return PlatformZoomRange.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
