@@ -1,6 +1,7 @@
 ## 2.14.7
 
 * Adds `PlatformPatternItem` pigeon class to convert `PlatformPolyline.pattern`.
+* Adds support for GroundOverlay on Android and iOS.
 
 ## 2.14.6
 

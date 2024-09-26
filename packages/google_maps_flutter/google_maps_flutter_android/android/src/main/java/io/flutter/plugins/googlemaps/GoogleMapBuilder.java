@@ -188,6 +188,11 @@ class GoogleMapBuilder implements GoogleMapOptionsSink {
   }
 
   @Override
+  public void setInitialGroundOverlays(Object initialGroundOverlays) {
+    this.initialGroundOverlays = initialGroundOverlays;
+  }
+
+  @Override
   public void setInitialHeatmaps(@NonNull List<Messages.PlatformHeatmap> initialHeatmaps) {
     this.initialHeatmaps = initialHeatmaps;
   }

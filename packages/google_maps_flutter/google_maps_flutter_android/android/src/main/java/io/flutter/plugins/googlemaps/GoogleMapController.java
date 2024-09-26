@@ -40,6 +40,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
+import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.maps.android.collections.MarkerManager;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.BinaryMessenger;
@@ -98,10 +99,12 @@ class GoogleMapController
   private @Nullable List<Messages.PlatformMarker> initialMarkers;
   private @Nullable List<Messages.PlatformClusterManager> initialClusterManagers;
   private @Nullable List<Messages.PlatformPolygon> initialPolygons;
+  private final GroundOverlaysController groundOverlaysController;
   private @Nullable List<Messages.PlatformPolyline> initialPolylines;
   private @Nullable List<Messages.PlatformCircle> initialCircles;
   private @Nullable List<Messages.PlatformHeatmap> initialHeatmaps;
   private @Nullable List<Messages.PlatformTileOverlay> initialTileOverlays;
+  private @Nullable List<Messages.PlatformGroundOverlay> initialGroundOverlays;
   // Null except between initialization and onMapReady.
   private @Nullable String initialMapStyle;
   private boolean lastSetStyleSucceeded;
@@ -137,6 +140,7 @@ class GoogleMapController
     this.circlesController = new CirclesController(flutterApi, density);
     this.heatmapsController = new HeatmapsController();
     this.tileOverlaysController = new TileOverlaysController(flutterApi);
+    this.groundOverlaysController = new GroundOverlaysController(flutterApi);
   }
 
   // Constructor for testing purposes only
@@ -154,6 +158,7 @@ class GoogleMapController
       PolylinesController polylinesController,
       CirclesController circlesController,
       HeatmapsController heatmapController,
+      GroundOverlaysController groundOverlaysController,
       TileOverlaysController tileOverlaysController) {
     this.id = id;
     this.context = context;
@@ -170,6 +175,7 @@ class GoogleMapController
     this.circlesController = circlesController;
     this.heatmapsController = heatmapController;
     this.tileOverlaysController = tileOverlaysController;
+    this.groundOverlaysController = groundOverlaysController;
   }
 
   @Override
@@ -209,6 +215,7 @@ class GoogleMapController
     circlesController.setGoogleMap(googleMap);
     heatmapsController.setGoogleMap(googleMap);
     tileOverlaysController.setGoogleMap(googleMap);
+    groundOverlaysController.setGoogleMap(googleMap);
     setMarkerCollectionListener(this);
     setClusterItemClickListener(this);
     setClusterItemRenderedListener(this);
@@ -219,6 +226,7 @@ class GoogleMapController
     updateInitialCircles();
     updateInitialHeatmaps();
     updateInitialTileOverlays();
+    updateInitialGroundOverlays();
     if (initialPadding != null && initialPadding.size() == 4) {
       setPadding(
           initialPadding.get(0),
@@ -231,7 +239,7 @@ class GoogleMapController
       initialMapStyle = null;
     }
   }
-
+  
   // Returns the first TextureView found in the view hierarchy.
   private static TextureView findTextureView(ViewGroup group) {
     final int n = group.getChildCount();
@@ -502,6 +510,11 @@ class GoogleMapController
       return;
     }
     mapView.onSaveInstanceState(bundle);
+  }
+
+  @Override
+  public void onGroundOverlayClick(GroundOverlay groundOverlay) {
+    groundOverlaysController.onGroundOverlayTap(groundOverlay.getId());
   }
 
   // GoogleMapOptionsSink methods
@@ -889,6 +902,18 @@ class GoogleMapController
     tileOverlaysController.addTileOverlays(toAdd);
     tileOverlaysController.changeTileOverlays(toChange);
     tileOverlaysController.removeTileOverlays(idsToRemove);
+  }
+
+  @Override
+  public void setInitialGroundOverlays(Object initialGroundOverlays) {
+    ArrayList<?> groundOverlays = (ArrayList<?>) initialGroundOverlays;
+    this.initialGroundOverlays = groundOverlays != null ? new ArrayList<>(groundOverlays) : null;
+    if (googleMap != null) {
+      updateInitialGroundOverlays();
+    }
+  }
+  private void updateInitialGroundOverlays() {
+    groundOverlaysController.addGroundOverlays(initialGroundOverlays);
   }
 
   @Override
