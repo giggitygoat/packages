@@ -86,9 +86,9 @@ class GoogleMapController {
         .onClusterTap(mapId: mapId)
         .listen((ClusterTapEvent e) => _googleMapState.onClusterTap(e.value));
 
-    GoogleMapsFlutterPlatform.instance
-        .onGroundOverlayTap(mapId: mapId)
-        .listen((GroundOverlayTapEvent e) => _googleMapState.onGroundOverlayTap(e.value));
+    //GoogleMapsFlutterPlatform.instance
+    //   .onGroundOverlayTap(mapId: mapId)
+    //  .listen((GroundOverlayTapEvent e) => _googleMapState.onGroundOverlayTap(e.value));
   }
 
   /// Updates configuration options of the map user interface.

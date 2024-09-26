@@ -261,13 +261,6 @@ class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
         );
         return tile.toJson();
 
-      case 'groundOverlay#onTap':
-        final Map<String, Object?> arguments = _getArgumentDictionary(call);
-        _mapEventStreamController.add(GroundOverlayTapEvent(
-          mapId,
-          GroundOverlayId(arguments['groundOverlayId']! as String),
-        ));
-
       case 'cluster#onTap':
         final Map<String, Object?> arguments = _getArgumentDictionary(call);
         final ClusterManagerId clusterManagerId =
