@@ -53,6 +53,7 @@ class GoogleMapBuilder implements GoogleMapOptionsSink {
     controller.setInitialPolylines(initialPolylines);
     controller.setInitialCircles(initialCircles);
     controller.setInitialHeatmaps(initialHeatmaps);
+    controller.setInitialGroundOverlays(initialGroundOverlays);
     controller.setPadding(padding.top, padding.left, padding.bottom, padding.right);
     controller.setInitialTileOverlays(initialTileOverlays);
     controller.setMapStyle(style);

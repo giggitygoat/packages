@@ -70,7 +70,7 @@ class GroundOverlaysController {
     if (overlayId == null) {
       return false;
     }
-    methodChannel.invokeMethod("groundOverlay#onTap", Convert.groundOverlayIdToJson(overlayId));
+    flutterApi.onGroundOverlayTap(overlayId, new NoOpVoidResult());
     GroundOverlayController groundOverlayController = groundOverlayIdToController.get(overlayId);
     if (groundOverlayController != null) {
       return groundOverlayController.consumeTapEvents();

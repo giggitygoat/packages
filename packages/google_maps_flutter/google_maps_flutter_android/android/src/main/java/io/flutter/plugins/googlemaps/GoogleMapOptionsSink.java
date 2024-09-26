@@ -49,6 +49,8 @@ interface GoogleMapOptionsSink {
 
   void setInitialMarkers(@NonNull List<Messages.PlatformMarker> initialMarkers);
 
+   void setInitialGroundOverlays(@NonNull List<Messages.PlatformGroundOverlay> initialGroundOverlays);
+
   void setInitialClusterManagers(
       @NonNull List<Messages.PlatformClusterManager> initialClusterManagers);
 
@@ -64,5 +66,4 @@ interface GoogleMapOptionsSink {
 
   void setMapStyle(@Nullable String style);
 
-  void setInitialGroundOverlays(Object initialGroundOverlays);
 }
