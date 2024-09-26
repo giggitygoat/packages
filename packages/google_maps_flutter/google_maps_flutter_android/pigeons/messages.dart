@@ -551,6 +551,11 @@ abstract class MapsApi {
   // The consuming code treats the entries as non-nullable.
   void updateClusterManagers(List<PlatformClusterManager?> toAdd, List<String?> idsToRemove);
 
+  /// Updates the set of ground overlays on the map.
+  // The consuming code treats the entries as non-nullable.
+  void updateGroundoverlays(
+      List<PlatformHeatmap?> toAdd, List<PlatformHeatmap?> toChange, List<String?> idsToRemove);
+
   /// Updates the set of markers on the map.
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848

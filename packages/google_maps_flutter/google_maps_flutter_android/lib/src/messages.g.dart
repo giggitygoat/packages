@@ -1665,6 +1665,29 @@ class MapsApi {
     }
   }
 
+  /// Updates the set of ground overlays on the map.
+  Future<void> updateGroundoverlays(List<PlatformHeatmap?> toAdd, List<PlatformHeatmap?> toChange, List<String?> idsToRemove) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.updateGroundoverlays$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_channel.send(<Object?>[toAdd, toChange, idsToRemove]) as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
   /// Updates the set of markers on the map.
   Future<void> updateMarkers(List<PlatformMarker?> toAdd, List<PlatformMarker?> toChange, List<String?> idsToRemove) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.updateMarkers$pigeonVar_messageChannelSuffix';
