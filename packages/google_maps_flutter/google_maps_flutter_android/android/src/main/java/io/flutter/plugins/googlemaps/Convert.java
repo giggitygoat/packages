@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 /** Conversions between JSON-like values and GoogleMaps data types. */
 class Convert {
@@ -612,6 +613,18 @@ class Convert {
     } else {
       return groundOverlayId;
     }
+  }
+
+  private static boolean toBoolean(Object o) {
+    return (Boolean) o;
+  }
+
+  private static LatLngBounds toLatLngBounds(Object o) {
+    if (o == null) {
+      return null;
+    }
+    final List<?> data = toList(o);
+    return new LatLngBounds(toLatLng(data.get(0)), toLatLng(data.get(1)));
   }
 
   static void interpretMapConfiguration(

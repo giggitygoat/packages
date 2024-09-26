@@ -29,6 +29,7 @@ class GoogleMapBuilder implements GoogleMapOptionsSink {
   private List<Messages.PlatformCircle> initialCircles;
   private List<Messages.PlatformHeatmap> initialHeatmaps;
   private List<Messages.PlatformTileOverlay> initialTileOverlays;
+  private List<Messages.PlatformGroundOverlay> initialGroundOverlays;
   private Rect padding = new Rect(0, 0, 0, 0);
   private @Nullable String style;
 
@@ -188,7 +189,7 @@ class GoogleMapBuilder implements GoogleMapOptionsSink {
   }
 
   @Override
-  public void setInitialGroundOverlays(Object initialGroundOverlays) {
+  public void setInitialGroundOverlays(@NonNull List<Messages.PlatformGroundOverlay>  initialGroundOverlays) {
     this.initialGroundOverlays = initialGroundOverlays;
   }
 

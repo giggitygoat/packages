@@ -25,5 +25,4 @@ interface GroundOverlayOptionsSink {
 
   void setTransparency(float transparency);
   
-  void setAnchor(float u, float v);
 }

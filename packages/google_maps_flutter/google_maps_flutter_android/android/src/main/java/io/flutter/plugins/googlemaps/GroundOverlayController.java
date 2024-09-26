@@ -15,10 +15,9 @@ class GroundOverlayController implements GroundOverlayOptionsSink {
   private final String googleMapsGroundOverlayId;
   private boolean consumeTapEvents;
 
-  GroundOverlayController(GroundOverlay groundOverlay, boolean consumeTapEvents) {
-      this.groundOverlay = groundOverlay;
-      this.consumeTapEvents = consumeTapEvents;
-      this.googleMapsGroundOverlayId = groundOverlay.getId();
+  GroundOverlayController(MapsCallbackApi flutterApi) {
+    this.googleMapsGroundOverlayId = new HashMap<>();
+    this.flutterApi = flutterApi;
   }
 
   void remove() {
@@ -70,10 +69,6 @@ class GroundOverlayController implements GroundOverlayOptionsSink {
   @Override
   public void setBearing(float bearing) {
     groundOverlay.setBearing(bearing);
-  }
-  @Override
-  public void setAnchor(float u, float v) {
-    //groundOverlay.setAnchor(u, v);
   }
 
   @Override
