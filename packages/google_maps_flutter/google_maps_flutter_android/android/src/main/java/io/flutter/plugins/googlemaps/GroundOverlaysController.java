@@ -9,7 +9,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
-import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugins.googlemaps.Messages.MapsCallbackApi;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
