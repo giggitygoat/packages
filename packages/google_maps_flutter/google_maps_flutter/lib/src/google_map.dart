@@ -40,11 +40,9 @@ class UnknownMapObjectIdError extends Error {
 }
 
 /// Android specific settings for [GoogleMap].
-@Deprecated(
-    'See https://pub.dev/packages/google_maps_flutter_android#display-mode')
+@Deprecated('See https://pub.dev/packages/google_maps_flutter_android#display-mode')
 class AndroidGoogleMapsFlutter {
-  @Deprecated(
-      'See https://pub.dev/packages/google_maps_flutter_android#display-mode')
+  @Deprecated('See https://pub.dev/packages/google_maps_flutter_android#display-mode')
   AndroidGoogleMapsFlutter._();
 
   /// Whether to render [GoogleMap] with a [AndroidViewSurface] to build the Google Maps widget.
@@ -54,11 +52,9 @@ class AndroidGoogleMapsFlutter {
   /// versions below 10. See
   /// https://docs.flutter.dev/platform-integration/android/platform-views#performance for more
   /// information.
-  @Deprecated(
-      'See https://pub.dev/packages/google_maps_flutter_android#display-mode')
+  @Deprecated('See https://pub.dev/packages/google_maps_flutter_android#display-mode')
   static bool get useAndroidViewSurface {
-    final GoogleMapsFlutterPlatform platform =
-        GoogleMapsFlutterPlatform.instance;
+    final GoogleMapsFlutterPlatform platform = GoogleMapsFlutterPlatform.instance;
     if (platform is GoogleMapsFlutterAndroid) {
       return platform.useAndroidViewSurface;
     }
@@ -72,11 +68,9 @@ class AndroidGoogleMapsFlutter {
   /// versions below 10. See
   /// https://docs.flutter.dev/platform-integration/android/platform-views#performance for more
   /// information.
-  @Deprecated(
-      'See https://pub.dev/packages/google_maps_flutter_android#display-mode')
+  @Deprecated('See https://pub.dev/packages/google_maps_flutter_android#display-mode')
   static set useAndroidViewSurface(bool useAndroidViewSurface) {
-    final GoogleMapsFlutterPlatform platform =
-        GoogleMapsFlutterPlatform.instance;
+    final GoogleMapsFlutterPlatform platform = GoogleMapsFlutterPlatform.instance;
     if (platform is GoogleMapsFlutterAndroid) {
       platform.useAndroidViewSurface = useAndroidViewSurface;
     }
@@ -121,6 +115,7 @@ class GoogleMap extends StatefulWidget {
     this.polylines = const <Polyline>{},
     this.circles = const <Circle>{},
     this.clusterManagers = const <ClusterManager>{},
+    this.groundOverlays = const <GroundOverlay>{},
     this.heatmaps = const <Heatmap>{},
     this.onCameraMoveStarted,
     this.tileOverlays = const <TileOverlay>{},
@@ -218,6 +213,9 @@ class GoogleMap extends StatefulWidget {
 
   /// Heatmaps to show on the map.
   final Set<Heatmap> heatmaps;
+
+  /// Ground overlays to be placed on the map.
+  final Set<GroundOverlay> groundOverlays;
 
   /// Tile overlays to be placed on the map.
   final Set<TileOverlay> tileOverlays;
@@ -329,16 +327,15 @@ class GoogleMap extends StatefulWidget {
 class _GoogleMapState extends State<GoogleMap> {
   final int _mapId = _nextMapCreationId++;
 
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+  final Completer<GoogleMapController> _controller = Completer<GoogleMapController>();
 
   Map<MarkerId, Marker> _markers = <MarkerId, Marker>{};
   Map<PolygonId, Polygon> _polygons = <PolygonId, Polygon>{};
   Map<PolylineId, Polyline> _polylines = <PolylineId, Polyline>{};
   Map<CircleId, Circle> _circles = <CircleId, Circle>{};
-  Map<ClusterManagerId, ClusterManager> _clusterManagers =
-      <ClusterManagerId, ClusterManager>{};
+  Map<ClusterManagerId, ClusterManager> _clusterManagers = <ClusterManagerId, ClusterManager>{};
   Map<HeatmapId, Heatmap> _heatmaps = <HeatmapId, Heatmap>{};
+  Map<GroundOverlayId, GroundOverlay> _groundOverlays = <GroundOverlayId, GroundOverlay>{};
   late MapConfiguration _mapConfiguration;
 
   @override
@@ -347,9 +344,8 @@ class _GoogleMapState extends State<GoogleMap> {
       _mapId,
       onPlatformViewCreated,
       widgetConfiguration: MapWidgetConfiguration(
-        textDirection: widget.layoutDirection ??
-            Directionality.maybeOf(context) ??
-            TextDirection.ltr,
+        textDirection:
+            widget.layoutDirection ?? Directionality.maybeOf(context) ?? TextDirection.ltr,
         initialCameraPosition: widget.initialCameraPosition,
         gestureRecognizers: widget.gestureRecognizers,
       ),
@@ -360,6 +356,7 @@ class _GoogleMapState extends State<GoogleMap> {
         circles: widget.circles,
         clusterManagers: widget.clusterManagers,
         heatmaps: widget.heatmaps,
+        groundOverlays: widget.groundOverlays,
       ),
       mapConfiguration: _mapConfiguration,
     );
@@ -375,6 +372,7 @@ class _GoogleMapState extends State<GoogleMap> {
     _polylines = keyByPolylineId(widget.polylines);
     _circles = keyByCircleId(widget.circles);
     _heatmaps = keyByHeatmapId(widget.heatmaps);
+    _groundOverlays = keyByGroundOverlayId(widget.groundOverlays);
   }
 
   @override
@@ -398,6 +396,7 @@ class _GoogleMapState extends State<GoogleMap> {
     _updatePolylines();
     _updateCircles();
     _updateHeatmaps();
+    _updateGroundOverlays();
     _updateTileOverlays();
   }
 
@@ -414,36 +413,36 @@ class _GoogleMapState extends State<GoogleMap> {
 
   Future<void> _updateMarkers() async {
     final GoogleMapController controller = await _controller.future;
-    unawaited(controller._updateMarkers(
-        MarkerUpdates.from(_markers.values.toSet(), widget.markers)));
+    unawaited(
+        controller._updateMarkers(MarkerUpdates.from(_markers.values.toSet(), widget.markers)));
     _markers = keyByMarkerId(widget.markers);
   }
 
   Future<void> _updateClusterManagers() async {
     final GoogleMapController controller = await _controller.future;
-    unawaited(controller._updateClusterManagers(ClusterManagerUpdates.from(
-        _clusterManagers.values.toSet(), widget.clusterManagers)));
+    unawaited(controller._updateClusterManagers(
+        ClusterManagerUpdates.from(_clusterManagers.values.toSet(), widget.clusterManagers)));
     _clusterManagers = keyByClusterManagerId(widget.clusterManagers);
   }
 
   Future<void> _updatePolygons() async {
     final GoogleMapController controller = await _controller.future;
-    unawaited(controller._updatePolygons(
-        PolygonUpdates.from(_polygons.values.toSet(), widget.polygons)));
+    unawaited(
+        controller._updatePolygons(PolygonUpdates.from(_polygons.values.toSet(), widget.polygons)));
     _polygons = keyByPolygonId(widget.polygons);
   }
 
   Future<void> _updatePolylines() async {
     final GoogleMapController controller = await _controller.future;
-    unawaited(controller._updatePolylines(
-        PolylineUpdates.from(_polylines.values.toSet(), widget.polylines)));
+    unawaited(controller
+        ._updatePolylines(PolylineUpdates.from(_polylines.values.toSet(), widget.polylines)));
     _polylines = keyByPolylineId(widget.polylines);
   }
 
   Future<void> _updateCircles() async {
     final GoogleMapController controller = await _controller.future;
-    unawaited(controller._updateCircles(
-        CircleUpdates.from(_circles.values.toSet(), widget.circles)));
+    unawaited(
+        controller._updateCircles(CircleUpdates.from(_circles.values.toSet(), widget.circles)));
     _circles = keyByCircleId(widget.circles);
   }
 
@@ -460,6 +459,13 @@ class _GoogleMapState extends State<GoogleMap> {
   Future<void> _updateTileOverlays() async {
     final GoogleMapController controller = await _controller.future;
     unawaited(controller._updateTileOverlays(widget.tileOverlays));
+  }
+
+  Future<void> _updateGroundOverlays() async {
+    final GoogleMapController controller = await _controller.future;
+    unawaited(controller._updateGroundOverlays(
+        GroundOverlayUpdates.from(_groundOverlays.values.toSet(), widget.groundOverlays)));
+    _groundOverlays = keyByGroundOverlayId(widget.groundOverlays);
   }
 
   Future<void> onPlatformViewCreated(int id) async {
@@ -531,6 +537,17 @@ class _GoogleMapState extends State<GoogleMap> {
     }
   }
 
+  void onGroundOverlayTap(GroundOverlayId groundOverlayId) {
+    final GroundOverlay? groundOverlay = _groundOverlays[groundOverlayId];
+    if (groundOverlay == null) {
+      throw UnknownMapObjectIdError('groundOverlay', groundOverlayId, 'onTap');
+    }
+    final VoidCallback? onTap = groundOverlay.onTap;
+    if (onTap != null) {
+      onTap();
+    }
+  }
+
   void onPolylineTap(PolylineId polylineId) {
     final Polyline? polyline = _polylines[polylineId];
     if (polyline == null) {
@@ -579,11 +596,9 @@ class _GoogleMapState extends State<GoogleMap> {
   }
 
   void onClusterTap(Cluster cluster) {
-    final ClusterManager? clusterManager =
-        _clusterManagers[cluster.clusterManagerId];
+    final ClusterManager? clusterManager = _clusterManagers[cluster.clusterManagerId];
     if (clusterManager == null) {
-      throw UnknownMapObjectIdError(
-          'clusterManager', cluster.clusterManagerId, 'onClusterTap');
+      throw UnknownMapObjectIdError('clusterManager', cluster.clusterManagerId, 'onClusterTap');
     }
     final ArgumentCallback<Cluster>? onClusterTap = clusterManager.onClusterTap;
     if (onClusterTap != null) {

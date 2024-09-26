@@ -73,8 +73,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     MapConfiguration configuration, {
     required int mapId,
   }) {
-    return updateMapOptions(jsonForMapConfiguration(configuration),
-        mapId: mapId);
+    return updateMapOptions(jsonForMapConfiguration(configuration), mapId: mapId);
   }
 
   /// Updates marker configuration.
@@ -142,6 +141,19 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('updateHeatmaps() has not been implemented.');
   }
 
+  /// Updates ground overlay configuration.
+  ///
+  /// Change listeners are notified once the update has been made on the
+  /// platform side.
+  ///
+  /// The returned [Future] completes after listeners have been notified.
+  Future<void> updateGroundOverlays(
+    GroundOverlayUpdates groundOverlayUpdates, {
+    required int mapId,
+  }) {
+    throw UnimplementedError('updateGroundOverlays() has not been implemented.');
+  }
+
   /// Updates tile overlay configuration.
   ///
   /// Change listeners are notified once the update has been made on the
@@ -165,8 +177,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     ClusterManagerUpdates clusterManagerUpdates, {
     required int mapId,
   }) {
-    throw UnimplementedError(
-        'updateClusterManagers() has not been implemented.');
+    throw UnimplementedError('updateClusterManagers() has not been implemented.');
   }
 
   /// Clears the tile cache so that all tiles will be requested again from the
@@ -265,8 +276,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     MarkerId markerId, {
     required int mapId,
   }) {
-    throw UnimplementedError(
-        'showMarkerInfoWindow() has not been implemented.');
+    throw UnimplementedError('showMarkerInfoWindow() has not been implemented.');
   }
 
   /// Programmatically hide the Info Window for a [Marker].
@@ -281,8 +291,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     MarkerId markerId, {
     required int mapId,
   }) {
-    throw UnimplementedError(
-        'hideMarkerInfoWindow() has not been implemented.');
+    throw UnimplementedError('hideMarkerInfoWindow() has not been implemented.');
   }
 
   /// Returns `true` when the [InfoWindow] is showing, `false` otherwise.
@@ -318,6 +327,11 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
 
   // The following are the 11 possible streams of data from the native side
   // into the plugin
+
+  /// A [GroundOverlay] has been tapped.
+  Stream<GroundOverlayTapEvent> onGroundOverlayTap({required int mapId}) {
+    throw UnimplementedError('onGroundOverlayTap() has not been implemented.');
+  }
 
   /// The Camera started moving.
   Stream<CameraMoveStartedEvent> onCameraMoveStarted({required int mapId}) {
@@ -411,6 +425,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     Set<Polyline> polylines = const <Polyline>{},
     Set<Circle> circles = const <Circle>{},
     Set<TileOverlay> tileOverlays = const <TileOverlay>{},
+    Set<GroundOverlay> groundOverlays = const <GroundOverlay>{},
     Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers =
         const <Factory<OneSequenceGestureRecognizer>>{},
     // TODO(stuartmorgan): Replace with a structured type that's part of the
@@ -439,6 +454,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     Set<Marker> markers = const <Marker>{},
     Set<Polygon> polygons = const <Polygon>{},
     Set<Polyline> polylines = const <Polyline>{},
+    Set<GroundOverlay> groundOverlays = const <GroundOverlay>{},
     Set<Circle> circles = const <Circle>{},
     Set<TileOverlay> tileOverlays = const <TileOverlay>{},
     Map<String, dynamic> mapOptions = const <String, dynamic>{},
@@ -450,6 +466,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
       markers: markers,
       polygons: polygons,
       polylines: polylines,
+      groundOverlays: groundOverlays,
       circles: circles,
       tileOverlays: tileOverlays,
       gestureRecognizers: gestureRecognizers,
@@ -473,6 +490,7 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
       markers: mapObjects.markers,
       polygons: mapObjects.polygons,
       polylines: mapObjects.polylines,
+      groundOverlays: mapObjects.groundOverlays,
       circles: mapObjects.circles,
       tileOverlays: mapObjects.tileOverlays,
       gestureRecognizers: widgetConfiguration.gestureRecognizers,
@@ -484,7 +502,6 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
   /// inspecting the platform map state.
   @visibleForTesting
   void enableDebugInspection() {
-    throw UnimplementedError(
-        'enableDebugInspection() has not been implemented.');
+    throw UnimplementedError('enableDebugInspection() has not been implemented.');
   }
 }

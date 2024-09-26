@@ -10,6 +10,7 @@
 ## 2.9.0
 
 * Adds support for heatmap layers.
+* Adds support for GroundOverlay on Android and iOS.
 
 ## 2.8.0
 

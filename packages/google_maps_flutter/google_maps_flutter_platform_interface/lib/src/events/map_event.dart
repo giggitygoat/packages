@@ -160,6 +160,13 @@ class MapTapEvent extends _PositionedMapEvent<void> {
   MapTapEvent(int mapId, LatLng position) : super(mapId, position, null);
 }
 
+class GroundOverlayTapEvent extends MapEvent<GroundOverlayId> {
+  /// Build GroundOverlayTap Event triggered from the map represented by `mapId`.
+  ///
+  /// The `value` of this event is a [GroundOverlayId] object that represents the tapped GroundOverlay
+  GroundOverlayTapEvent(super.mapId, super.groundOverlayId);
+}
+
 /// An event fired when a Map is long pressed.
 class MapLongPressEvent extends _PositionedMapEvent<void> {
   /// Build an MapTap Event triggered from the map represented by `mapId`.

@@ -5,7 +5,7 @@
 @import GoogleMapsUtils;
 
 #import "GoogleMapController.h"
-
+#import "GoogleMapGroundOverlayController.h"
 #import "FGMMarkerUserData.h"
 #import "FLTGoogleMapHeatmapController.h"
 #import "FLTGoogleMapJSONConversions.h"
