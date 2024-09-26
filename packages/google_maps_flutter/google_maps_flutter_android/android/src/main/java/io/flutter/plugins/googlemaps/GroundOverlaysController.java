@@ -39,13 +39,13 @@ class GroundOverlaysController {
 
   void addGroundOverlays(@NonNull List<Messages.PlatformGroundOverlay> groundOverlaysToAdd) {
     if (groundOverlaysToAdd != null) {
-      for (Object groundOverlayToAdd : groundOverlaysToAdd) {
+      for (Messages.PlatformGroundOverlay groundOverlayToAdd : groundOverlaysToAdd) {
         addGroundOverlay(groundOverlayToAdd);
       }
     }
   }
 
-  private void addGroundOverlay(Object groundOverlay) {
+  private void addGroundOverlay(Messages.PlatformGroundOverlay groundOverlay) {
     if (groundOverlay == null) {
       return;
     }
@@ -78,15 +78,15 @@ class GroundOverlaysController {
     return false;
   }
 
-  void changeGroundOverlays(List<Object> groundOverlaysToChange) {
+  void changeGroundOverlays(@NonNull List<Messages.PlatformGroundOverlay> groundOverlaysToChange) {
     if (groundOverlaysToChange != null) {
-      for (Object groundOverlayToChange : groundOverlaysToChange) {
+      for (Messages.PlatformGroundOverlay groundOverlayToChange : groundOverlaysToChange) {
         changeGroundOverlay(groundOverlayToChange);
       }
     }
   }
 
-  private void changeGroundOverlay(Object groundOverlay) {
+  private void changeGroundOverlay(Messages.PlatformGroundOverlay groundOverlay) {
     if (groundOverlay == null) {
       return;
     }
@@ -97,12 +97,12 @@ class GroundOverlaysController {
     }
   }
 
-  void removeGroundOverlays(List<Object> groundOverlaysToRemove) {
+  void removeGroundOverlays(@NonNull List<String> groundOverlaysToRemove) {
     if (groundOverlaysToRemove == null) {
       return;
     }
 
-    for (Object rawGroundOverlayId : groundOverlaysToRemove) {
+    for (String rawGroundOverlayId : groundOverlaysToRemove) {
       if (rawGroundOverlayId == null) {
         continue;
       }

@@ -875,6 +875,16 @@ class GoogleMapController
   }
 
   @Override
+  public void updateGroundOverlays(
+      @NonNull List<Messages.PlatformGroundOverlay> toAdd,
+      @NonNull List<Messages.PlatformGroundOverlay> toChange,
+      @NonNull List<String> idsToRemove) {
+    groundOverlaysController.addGroundOverlays(toAdd);
+    groundOverlaysController.changeGroundOverlays(toChange);
+    groundOverlaysController.removeGroundOverlays(idsToRemove);
+  }
+
+  @Override
   public void updatePolygons(
       @NonNull List<Messages.PlatformPolygon> toAdd,
       @NonNull List<Messages.PlatformPolygon> toChange,

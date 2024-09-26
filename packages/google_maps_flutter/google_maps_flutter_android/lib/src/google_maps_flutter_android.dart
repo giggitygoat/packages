@@ -202,6 +202,11 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
   }
 
   @override
+  Stream<GroundOverlayTapEvent> onGroundOverlayTap({required int mapId}) {
+    return _events(mapId).whereType<GroundOverlayTapEvent>();
+  }
+
+  @override
   Stream<MapTapEvent> onTap({required int mapId}) {
     return _events(mapId).whereType<MapTapEvent>();
   }
@@ -291,6 +296,22 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
       heatmapUpdates.heatmapsToAdd.map(_platformHeatmapFromHeatmap).toList(),
       heatmapUpdates.heatmapsToChange.map(_platformHeatmapFromHeatmap).toList(),
       heatmapUpdates.heatmapIdsToRemove.map((HeatmapId id) => id.value).toList(),
+    );
+  }
+
+  @override
+  Future<void> updateGroundOverlays(
+    GroundOverlayUpdates groundOverlayUpdates, {
+    required int mapId,
+  }) {
+    return _hostApi(mapId).updateGroundOverlays(
+      groundOverlayUpdates.groundOverlaysToAdd
+          .map(_platformGroundOverlayFromGroundOverlay)
+          .toList(),
+      groundOverlayUpdates.groundOverlaysToChange
+          .map(_platformGroundOverlayFromGroundOverlay)
+          .toList(),
+      groundOverlayUpdates.groundOverlayIdsToRemove.map((GroundOverlayId id) => id.value).toList(),
     );
   }
 

@@ -5180,7 +5180,7 @@ public class Messages {
     /** Updates the set of custer managers for clusters on the map. */
     void updateClusterManagers(@NonNull List<PlatformClusterManager> toAdd, @NonNull List<String> idsToRemove);
     /** Updates the set of ground overlays on the map. */
-    void updateGroundoverlays(@NonNull List<PlatformHeatmap> toAdd, @NonNull List<PlatformHeatmap> toChange, @NonNull List<String> idsToRemove);
+    void updateGroundOverlays(@NonNull List<PlatformGroundOverlay> toAdd, @NonNull List<PlatformGroundOverlay> toChange, @NonNull List<String> idsToRemove);
     /** Updates the set of markers on the map. */
     void updateMarkers(@NonNull List<PlatformMarker> toAdd, @NonNull List<PlatformMarker> toChange, @NonNull List<String> idsToRemove);
     /** Updates the set of polygonss on the map. */
@@ -5378,17 +5378,17 @@ public class Messages {
       {
         BasicMessageChannel<Object> channel =
             new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.updateGroundoverlays" + messageChannelSuffix, getCodec());
+                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.updateGroundOverlays" + messageChannelSuffix, getCodec());
         if (api != null) {
           channel.setMessageHandler(
               (message, reply) -> {
                 ArrayList<Object> wrapped = new ArrayList<>();
                 ArrayList<Object> args = (ArrayList<Object>) message;
-                List<PlatformHeatmap> toAddArg = (List<PlatformHeatmap>) args.get(0);
-                List<PlatformHeatmap> toChangeArg = (List<PlatformHeatmap>) args.get(1);
+                List<PlatformGroundOverlay> toAddArg = (List<PlatformGroundOverlay>) args.get(0);
+                List<PlatformGroundOverlay> toChangeArg = (List<PlatformGroundOverlay>) args.get(1);
                 List<String> idsToRemoveArg = (List<String>) args.get(2);
                 try {
-                  api.updateGroundoverlays(toAddArg, toChangeArg, idsToRemoveArg);
+                  api.updateGroundOverlays(toAddArg, toChangeArg, idsToRemoveArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

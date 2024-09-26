@@ -1666,8 +1666,8 @@ class MapsApi {
   }
 
   /// Updates the set of ground overlays on the map.
-  Future<void> updateGroundoverlays(List<PlatformHeatmap?> toAdd, List<PlatformHeatmap?> toChange, List<String?> idsToRemove) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.updateGroundoverlays$pigeonVar_messageChannelSuffix';
+  Future<void> updateGroundOverlays(List<PlatformGroundOverlay?> toAdd, List<PlatformGroundOverlay?> toChange, List<String?> idsToRemove) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.updateGroundOverlays$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,

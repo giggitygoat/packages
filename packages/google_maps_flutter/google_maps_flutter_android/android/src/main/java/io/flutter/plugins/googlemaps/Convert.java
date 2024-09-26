@@ -562,52 +562,49 @@ class Convert {
     return (String) o;
   }
 
-    static String interpretGroundOverlayOptions(Object o, GroundOverlayOptionsSink sink, AssetManager assetManager, float density) {
-    final Map<?, ?> data = toMap(o);
-    final Object consumeTapEvents = data.get("consumeTapEvents");
+    static String interpretGroundOverlayOptions(@NonNull Messages.PlatformGroundOverlay o, GroundOverlayOptionsSink sink, AssetManager assetManager, float density) {
+    final Boolean consumeTapEvents = o.getConsumeTapEvents();
     if (consumeTapEvents != null) {
-      sink.setConsumeTapEvents(toBoolean(consumeTapEvents));
+      sink.setConsumeTapEvents(consumeTapEvents);
     }
-    final Object transparency = data.get("transparency");
-    if (transparency != null) {
-      sink.setTransparency(toFloat(transparency));
-    }
-    final Object width = data.get("width");
-    final Object height = data.get("height");
-    final Object position = data.get("position");
-    final Object bounds = data.get("bounds");
+   
+    final @Nullable Double width = o.getWidth();
+    final @Nullable Double height = o.getHeight();
+    final LatLng position = toLatLng(o.getPosition().toList());
+
+
+    final @Nullable Messages.PlatformLatLngBounds bounds = o.getBounds();
     if (height != null) {
-      sink.setPosition(toLatLng(position), toFloat(width), toFloat(height), null);
+      sink.setPosition(position, width.floatValue(), height.floatValue(), null);
     } else {
       if (width != null) {
-        sink.setPosition(toLatLng(position), toFloat(width), null, null);
+        sink.setPosition(position, width.floatValue(), null, null);
       } else {
-        sink.setPosition(null, null, null, toLatLngBounds(bounds));
+        sink.setPosition(null, null, null, bounds);
       }
     }
-    final Object anchor = data.get("anchor");
-    if (anchor != null) {
-      final List<?> anchorData = toList(anchor);
-      sink.setAnchor(toFloat(anchorData.get(0)), toFloat(anchorData.get(1)));
-    }
 
-    final Object bearing = data.get("bearing");
-    if (bearing != null) {
-      sink.setBearing(toFloat(bearing));
-    }
-    final Object visible = data.get("visible");
+    Messages.PlatformOffset anchor = o.getAnchor();
+    sink.setAnchor(
+        anchor.getDx().floatValue(), anchor.getDy().floatValue());
+  
+
+    
+    final float bearing = o.getBearing().floatValue();
+    sink.setBearing(bearing);
+    
+    final Boolean visible = o.getVisible();
     if (visible != null) {
-      sink.setVisible(toBoolean(visible));
+      sink.setVisible(visible);
     }
-    final Object zIndex = data.get("zIndex");
-    if (zIndex != null) {
-      sink.setZIndex(toFloat(zIndex));
-    }
-    final Object icon = data.get("icon");
+    final Long zIndex = o.getZIndex();
+      sink.setZIndex(zIndex);
+    
+    final Object icon = o.getIcon();
     if (icon != null) {
       sink.setIcon(toBitmapDescriptor(icon, assetManager, density));
     }
-    final String groundOverlayId = (String) data.get("groundOverlayId");
+    final String groundOverlayId = (String) o.getGroundOverlayId();
     if (groundOverlayId == null) {
       throw new IllegalArgumentException("groundOverlayId was null");
     } else {
