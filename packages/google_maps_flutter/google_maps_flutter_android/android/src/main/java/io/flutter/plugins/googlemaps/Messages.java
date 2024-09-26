@@ -3978,6 +3978,19 @@ public class Messages {
       this.initialClusterManagers = setterArg;
     }
 
+    private @NonNull List<PlatformGroundOverlay> initialGroundOverlays;
+
+    public @NonNull List<PlatformGroundOverlay> getInitialGroundOverlays() {
+      return initialGroundOverlays;
+    }
+
+    public void setInitialGroundOverlays(@NonNull List<PlatformGroundOverlay> setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"initialGroundOverlays\" is null.");
+      }
+      this.initialGroundOverlays = setterArg;
+    }
+
     /** Constructor is non-public to enforce null safety; use Builder. */
     PlatformMapViewCreationParams() {}
 
@@ -3986,12 +3999,12 @@ public class Messages {
       if (this == o) { return true; }
       if (o == null || getClass() != o.getClass()) { return false; }
       PlatformMapViewCreationParams that = (PlatformMapViewCreationParams) o;
-      return initialCameraPosition.equals(that.initialCameraPosition) && mapConfiguration.equals(that.mapConfiguration) && initialCircles.equals(that.initialCircles) && initialMarkers.equals(that.initialMarkers) && initialPolygons.equals(that.initialPolygons) && initialPolylines.equals(that.initialPolylines) && initialHeatmaps.equals(that.initialHeatmaps) && initialTileOverlays.equals(that.initialTileOverlays) && initialClusterManagers.equals(that.initialClusterManagers);
+      return initialCameraPosition.equals(that.initialCameraPosition) && mapConfiguration.equals(that.mapConfiguration) && initialCircles.equals(that.initialCircles) && initialMarkers.equals(that.initialMarkers) && initialPolygons.equals(that.initialPolygons) && initialPolylines.equals(that.initialPolylines) && initialHeatmaps.equals(that.initialHeatmaps) && initialTileOverlays.equals(that.initialTileOverlays) && initialClusterManagers.equals(that.initialClusterManagers) && initialGroundOverlays.equals(that.initialGroundOverlays);
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(initialCameraPosition, mapConfiguration, initialCircles, initialMarkers, initialPolygons, initialPolylines, initialHeatmaps, initialTileOverlays, initialClusterManagers);
+      return Objects.hash(initialCameraPosition, mapConfiguration, initialCircles, initialMarkers, initialPolygons, initialPolylines, initialHeatmaps, initialTileOverlays, initialClusterManagers, initialGroundOverlays);
     }
 
     public static final class Builder {
@@ -4068,6 +4081,14 @@ public class Messages {
         return this;
       }
 
+      private @Nullable List<PlatformGroundOverlay> initialGroundOverlays;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setInitialGroundOverlays(@NonNull List<PlatformGroundOverlay> setterArg) {
+        this.initialGroundOverlays = setterArg;
+        return this;
+      }
+
       public @NonNull PlatformMapViewCreationParams build() {
         PlatformMapViewCreationParams pigeonReturn = new PlatformMapViewCreationParams();
         pigeonReturn.setInitialCameraPosition(initialCameraPosition);
@@ -4079,13 +4100,14 @@ public class Messages {
         pigeonReturn.setInitialHeatmaps(initialHeatmaps);
         pigeonReturn.setInitialTileOverlays(initialTileOverlays);
         pigeonReturn.setInitialClusterManagers(initialClusterManagers);
+        pigeonReturn.setInitialGroundOverlays(initialGroundOverlays);
         return pigeonReturn;
       }
     }
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<>(9);
+      ArrayList<Object> toListResult = new ArrayList<>(10);
       toListResult.add(initialCameraPosition);
       toListResult.add(mapConfiguration);
       toListResult.add(initialCircles);
@@ -4095,6 +4117,7 @@ public class Messages {
       toListResult.add(initialHeatmaps);
       toListResult.add(initialTileOverlays);
       toListResult.add(initialClusterManagers);
+      toListResult.add(initialGroundOverlays);
       return toListResult;
     }
 
@@ -4118,6 +4141,8 @@ public class Messages {
       pigeonResult.setInitialTileOverlays((List<PlatformTileOverlay>) initialTileOverlays);
       Object initialClusterManagers = pigeonVar_list.get(8);
       pigeonResult.setInitialClusterManagers((List<PlatformClusterManager>) initialClusterManagers);
+      Object initialGroundOverlays = pigeonVar_list.get(9);
+      pigeonResult.setInitialGroundOverlays((List<PlatformGroundOverlay>) initialGroundOverlays);
       return pigeonResult;
     }
   }

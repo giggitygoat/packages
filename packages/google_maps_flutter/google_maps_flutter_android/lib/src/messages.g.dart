@@ -1062,6 +1062,7 @@ class PlatformMapViewCreationParams {
     required this.initialHeatmaps,
     required this.initialTileOverlays,
     required this.initialClusterManagers,
+    required this.initialGroundOverlays,
   });
 
   PlatformCameraPosition initialCameraPosition;
@@ -1082,6 +1083,8 @@ class PlatformMapViewCreationParams {
 
   List<PlatformClusterManager?> initialClusterManagers;
 
+  List<PlatformGroundOverlay?> initialGroundOverlays;
+
   Object encode() {
     return <Object?>[
       initialCameraPosition,
@@ -1093,6 +1096,7 @@ class PlatformMapViewCreationParams {
       initialHeatmaps,
       initialTileOverlays,
       initialClusterManagers,
+      initialGroundOverlays,
     ];
   }
 
@@ -1108,6 +1112,7 @@ class PlatformMapViewCreationParams {
       initialHeatmaps: (result[6] as List<Object?>?)!.cast<PlatformHeatmap?>(),
       initialTileOverlays: (result[7] as List<Object?>?)!.cast<PlatformTileOverlay?>(),
       initialClusterManagers: (result[8] as List<Object?>?)!.cast<PlatformClusterManager?>(),
+      initialGroundOverlays: (result[9] as List<Object?>?)!.cast<PlatformGroundOverlay?>(),
     );
   }
 }

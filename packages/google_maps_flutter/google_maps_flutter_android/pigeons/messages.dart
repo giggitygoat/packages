@@ -420,6 +420,7 @@ class PlatformMapViewCreationParams {
     required this.initialHeatmaps,
     required this.initialTileOverlays,
     required this.initialClusterManagers,
+    required this.initialGroundOverlays,
   });
 
   final PlatformCameraPosition initialCameraPosition;
@@ -434,6 +435,7 @@ class PlatformMapViewCreationParams {
   final List<PlatformHeatmap?> initialHeatmaps;
   final List<PlatformTileOverlay?> initialTileOverlays;
   final List<PlatformClusterManager?> initialClusterManagers;
+  final List<PlatformGroundOverlay?> initialGroundOverlays;
 }
 
 /// Pigeon equivalent of MapConfiguration.

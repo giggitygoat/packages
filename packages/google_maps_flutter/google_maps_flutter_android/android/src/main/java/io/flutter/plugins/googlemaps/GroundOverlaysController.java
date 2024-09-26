@@ -37,7 +37,7 @@ class GroundOverlaysController {
     this.googleMap = googleMap;
   }
 
-  void addGroundOverlays(List<Object> groundOverlaysToAdd) {
+  void addGroundOverlays(@NonNull List<Messages.PlatformGroundOverlay> groundOverlaysToAdd) {
     if (groundOverlaysToAdd != null) {
       for (Object groundOverlayToAdd : groundOverlaysToAdd) {
         addGroundOverlay(groundOverlayToAdd);
