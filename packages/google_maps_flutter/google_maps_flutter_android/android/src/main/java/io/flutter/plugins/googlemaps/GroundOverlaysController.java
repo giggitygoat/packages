@@ -18,17 +18,19 @@ class GroundOverlaysController {
   private GoogleMap googleMap;
   private final Map<String, GroundOverlayController> groundOverlayIdToController;
   private final Map<String, String> googleMapsGroundOverlayIdToDartOverlayId;
-  private MethodChannel methodChannel;
+  private final @NonNull MapsCallbackApi flutterApi;
   private final AssetManager assetManager;
   private final float density;
 
-  GroundOverlaysController(MethodChannel methodChannel, AssetManager assetManager, float density) {
-    this.methodChannel = methodChannel;
+  GroundOverlaysController(@NonNull MapsCallbackApi flutterApi, AssetManager assetManager, float density) {
+    this.flutterApi = flutterApi;
     this.groundOverlayIdToController = new HashMap<>();
     this.googleMapsGroundOverlayIdToDartOverlayId = new HashMap<>();
     this.assetManager = assetManager;
     this.density = density;
   }
+
+
 
   void setGoogleMap(GoogleMap googleMap) {
     this.googleMap = googleMap;
