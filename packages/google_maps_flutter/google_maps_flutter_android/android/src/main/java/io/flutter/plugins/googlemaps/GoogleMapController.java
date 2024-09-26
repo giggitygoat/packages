@@ -905,7 +905,7 @@ class GoogleMapController
   }
 
   @Override
-  public void setInitialGroundOverlays(Object initialGroundOverlays) {
+  public void setInitialGroundOverlays(@NonNull List<Messages.PlatformGroundOverlay>  initialGroundOverlays) {
     ArrayList<?> groundOverlays = (ArrayList<?>) initialGroundOverlays;
     this.initialGroundOverlays = groundOverlays != null ? new ArrayList<>(groundOverlays) : null;
     if (googleMap != null) {
