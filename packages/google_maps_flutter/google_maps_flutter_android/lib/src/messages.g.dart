@@ -2138,6 +2138,9 @@ abstract class MapsCallbackApi {
   /// Called when a circle is tapped.
   void onCircleTap(String circleId);
 
+  /// Called when a groundOverlay is tapped.
+  void onGroundOverlayTap(String groundOverlayId);
+
   /// Called when a marker cluster is tapped.
   void onClusterTap(PlatformCluster cluster);
 
@@ -2415,6 +2418,31 @@ abstract class MapsCallbackApi {
               'Argument for dev.flutter.pigeon.google_maps_flutter_android.MapsCallbackApi.onCircleTap was null, expected non-null String.');
           try {
             api.onCircleTap(arg_circleId!);
+            return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.google_maps_flutter_android.MapsCallbackApi.onGroundOverlayTap$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        pigeonVar_channel.setMessageHandler(null);
+      } else {
+        pigeonVar_channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.google_maps_flutter_android.MapsCallbackApi.onGroundOverlayTap was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_groundOverlayId = (args[0] as String?);
+          assert(arg_groundOverlayId != null,
+              'Argument for dev.flutter.pigeon.google_maps_flutter_android.MapsCallbackApi.onGroundOverlayTap was null, expected non-null String.');
+          try {
+            api.onGroundOverlayTap(arg_groundOverlayId!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

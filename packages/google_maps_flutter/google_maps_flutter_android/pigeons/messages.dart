@@ -663,6 +663,9 @@ abstract class MapsCallbackApi {
   /// Called when a circle is tapped.
   void onCircleTap(String circleId);
 
+  /// Called when a groundOverlay is tapped.
+  void onGroundOverlayTap(String groundOverlayId);
+
   /// Called when a marker cluster is tapped.
   void onClusterTap(PlatformCluster cluster);
 

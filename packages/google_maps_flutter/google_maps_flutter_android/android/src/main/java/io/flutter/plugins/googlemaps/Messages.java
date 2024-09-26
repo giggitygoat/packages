@@ -6019,6 +6019,27 @@ public class Messages {
             } 
           });
     }
+    /** Called when a groundOverlay is tapped. */
+    public void onGroundOverlayTap(@NonNull String groundOverlayIdArg, @NonNull VoidResult result) {
+      final String channelName = "dev.flutter.pigeon.google_maps_flutter_android.MapsCallbackApi.onGroundOverlayTap" + messageChannelSuffix;
+      BasicMessageChannel<Object> channel =
+          new BasicMessageChannel<>(
+              binaryMessenger, channelName, getCodec());
+      channel.send(
+          new ArrayList<>(Collections.singletonList(groundOverlayIdArg)),
+          channelReply -> {
+            if (channelReply instanceof List) {
+              List<Object> listReply = (List<Object>) channelReply;
+              if (listReply.size() > 1) {
+                result.error(new FlutterError((String) listReply.get(0), (String) listReply.get(1), listReply.get(2)));
+              } else {
+                result.success();
+              }
+            }  else {
+              result.error(createConnectionError(channelName));
+            } 
+          });
+    }
     /** Called when a marker cluster is tapped. */
     public void onClusterTap(@NonNull PlatformCluster clusterArg, @NonNull VoidResult result) {
       final String channelName = "dev.flutter.pigeon.google_maps_flutter_android.MapsCallbackApi.onClusterTap" + messageChannelSuffix;
