@@ -3481,16 +3481,13 @@ public class Messages {
       this.consumeTapEvents = setterArg;
     }
 
-    private @NonNull PlatformLatLng position;
+    private @Nullable PlatformLatLng position;
 
-    public @NonNull PlatformLatLng getPosition() {
+    public @Nullable PlatformLatLng getPosition() {
       return position;
     }
 
-    public void setPosition(@NonNull PlatformLatLng setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"position\" is null.");
-      }
+    public void setPosition(@Nullable PlatformLatLng setterArg) {
       this.position = setterArg;
     }
 
@@ -3520,55 +3517,43 @@ public class Messages {
       this.visible = setterArg;
     }
 
-    private @NonNull Object icon;
+    private @Nullable Object icon;
 
-    public @NonNull Object getIcon() {
+    public @Nullable Object getIcon() {
       return icon;
     }
 
-    public void setIcon(@NonNull Object setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"icon\" is null.");
-      }
+    public void setIcon(@Nullable Object setterArg) {
       this.icon = setterArg;
     }
 
-    private @NonNull PlatformLatLngBounds bounds;
+    private @Nullable PlatformLatLngBounds bounds;
 
-    public @NonNull PlatformLatLngBounds getBounds() {
+    public @Nullable PlatformLatLngBounds getBounds() {
       return bounds;
     }
 
-    public void setBounds(@NonNull PlatformLatLngBounds setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"bounds\" is null.");
-      }
+    public void setBounds(@Nullable PlatformLatLngBounds setterArg) {
       this.bounds = setterArg;
     }
 
-    private @NonNull Double width;
+    private @Nullable Double width;
 
-    public @NonNull Double getWidth() {
+    public @Nullable Double getWidth() {
       return width;
     }
 
-    public void setWidth(@NonNull Double setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"width\" is null.");
-      }
+    public void setWidth(@Nullable Double setterArg) {
       this.width = setterArg;
     }
 
-    private @NonNull Double height;
+    private @Nullable Double height;
 
-    public @NonNull Double getHeight() {
+    public @Nullable Double getHeight() {
       return height;
     }
 
-    public void setHeight(@NonNull Double setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"height\" is null.");
-      }
+    public void setHeight(@Nullable Double setterArg) {
       this.height = setterArg;
     }
 
@@ -3585,29 +3570,23 @@ public class Messages {
       this.bearing = setterArg;
     }
 
-    private @NonNull PlatformOffset anchor;
+    private @Nullable PlatformOffset anchor;
 
-    public @NonNull PlatformOffset getAnchor() {
+    public @Nullable PlatformOffset getAnchor() {
       return anchor;
     }
 
-    public void setAnchor(@NonNull PlatformOffset setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"anchor\" is null.");
-      }
+    public void setAnchor(@Nullable PlatformOffset setterArg) {
       this.anchor = setterArg;
     }
 
-    private @NonNull Double opacity;
+    private @Nullable Double opacity;
 
-    public @NonNull Double getOpacity() {
+    public @Nullable Double getOpacity() {
       return opacity;
     }
 
-    public void setOpacity(@NonNull Double setterArg) {
-      if (setterArg == null) {
-        throw new IllegalStateException("Nonnull field \"opacity\" is null.");
-      }
+    public void setOpacity(@Nullable Double setterArg) {
       this.opacity = setterArg;
     }
 
@@ -3619,7 +3598,7 @@ public class Messages {
       if (this == o) { return true; }
       if (o == null || getClass() != o.getClass()) { return false; }
       PlatformGroundOverlay that = (PlatformGroundOverlay) o;
-      return groundOverlayId.equals(that.groundOverlayId) && consumeTapEvents.equals(that.consumeTapEvents) && position.equals(that.position) && zIndex.equals(that.zIndex) && visible.equals(that.visible) && icon.equals(that.icon) && bounds.equals(that.bounds) && width.equals(that.width) && height.equals(that.height) && bearing.equals(that.bearing) && anchor.equals(that.anchor) && opacity.equals(that.opacity);
+      return groundOverlayId.equals(that.groundOverlayId) && consumeTapEvents.equals(that.consumeTapEvents) && Objects.equals(position, that.position) && zIndex.equals(that.zIndex) && visible.equals(that.visible) && Objects.equals(icon, that.icon) && Objects.equals(bounds, that.bounds) && Objects.equals(width, that.width) && Objects.equals(height, that.height) && bearing.equals(that.bearing) && Objects.equals(anchor, that.anchor) && Objects.equals(opacity, that.opacity);
     }
 
     @Override
@@ -3648,7 +3627,7 @@ public class Messages {
       private @Nullable PlatformLatLng position;
 
       @CanIgnoreReturnValue
-      public @NonNull Builder setPosition(@NonNull PlatformLatLng setterArg) {
+      public @NonNull Builder setPosition(@Nullable PlatformLatLng setterArg) {
         this.position = setterArg;
         return this;
       }
@@ -3672,7 +3651,7 @@ public class Messages {
       private @Nullable Object icon;
 
       @CanIgnoreReturnValue
-      public @NonNull Builder setIcon(@NonNull Object setterArg) {
+      public @NonNull Builder setIcon(@Nullable Object setterArg) {
         this.icon = setterArg;
         return this;
       }
@@ -3680,7 +3659,7 @@ public class Messages {
       private @Nullable PlatformLatLngBounds bounds;
 
       @CanIgnoreReturnValue
-      public @NonNull Builder setBounds(@NonNull PlatformLatLngBounds setterArg) {
+      public @NonNull Builder setBounds(@Nullable PlatformLatLngBounds setterArg) {
         this.bounds = setterArg;
         return this;
       }
@@ -3688,7 +3667,7 @@ public class Messages {
       private @Nullable Double width;
 
       @CanIgnoreReturnValue
-      public @NonNull Builder setWidth(@NonNull Double setterArg) {
+      public @NonNull Builder setWidth(@Nullable Double setterArg) {
         this.width = setterArg;
         return this;
       }
@@ -3696,7 +3675,7 @@ public class Messages {
       private @Nullable Double height;
 
       @CanIgnoreReturnValue
-      public @NonNull Builder setHeight(@NonNull Double setterArg) {
+      public @NonNull Builder setHeight(@Nullable Double setterArg) {
         this.height = setterArg;
         return this;
       }
@@ -3712,7 +3691,7 @@ public class Messages {
       private @Nullable PlatformOffset anchor;
 
       @CanIgnoreReturnValue
-      public @NonNull Builder setAnchor(@NonNull PlatformOffset setterArg) {
+      public @NonNull Builder setAnchor(@Nullable PlatformOffset setterArg) {
         this.anchor = setterArg;
         return this;
       }
@@ -3720,7 +3699,7 @@ public class Messages {
       private @Nullable Double opacity;
 
       @CanIgnoreReturnValue
-      public @NonNull Builder setOpacity(@NonNull Double setterArg) {
+      public @NonNull Builder setOpacity(@Nullable Double setterArg) {
         this.opacity = setterArg;
         return this;
       }

@@ -952,42 +952,42 @@ class PlatformCluster {
 class PlatformGroundOverlay {
   PlatformGroundOverlay({
     required this.groundOverlayId,
-    required this.consumeTapEvents,
-    required this.position,
-    required this.zIndex,
-    required this.visible,
-    required this.icon,
-    required this.bounds,
-    required this.width,
-    required this.height,
-    required this.bearing,
-    required this.anchor,
-    required this.opacity,
+    this.consumeTapEvents = false,
+    this.position,
+    this.zIndex = 0,
+    this.visible = true,
+    this.icon,
+    this.bounds,
+    this.width,
+    this.height,
+    this.bearing = 0.0,
+    this.anchor,
+    this.opacity,
   });
 
   String groundOverlayId;
 
   bool consumeTapEvents;
 
-  PlatformLatLng position;
+  PlatformLatLng? position;
 
   int zIndex;
 
   bool visible;
 
-  Object icon;
+  Object? icon;
 
-  PlatformLatLngBounds bounds;
+  PlatformLatLngBounds? bounds;
 
-  double width;
+  double? width;
 
-  double height;
+  double? height;
 
   double bearing;
 
-  PlatformOffset anchor;
+  PlatformOffset? anchor;
 
-  double opacity;
+  double? opacity;
 
   Object encode() {
     return <Object?>[
@@ -1011,16 +1011,16 @@ class PlatformGroundOverlay {
     return PlatformGroundOverlay(
       groundOverlayId: result[0]! as String,
       consumeTapEvents: result[1]! as bool,
-      position: result[2]! as PlatformLatLng,
+      position: result[2] as PlatformLatLng?,
       zIndex: result[3]! as int,
       visible: result[4]! as bool,
-      icon: result[5]!,
-      bounds: result[6]! as PlatformLatLngBounds,
-      width: result[7]! as double,
-      height: result[8]! as double,
+      icon: result[5],
+      bounds: result[6] as PlatformLatLngBounds?,
+      width: result[7] as double?,
+      height: result[8] as double?,
       bearing: result[9]! as double,
-      anchor: result[10]! as PlatformOffset,
-      opacity: result[11]! as double,
+      anchor: result[10] as PlatformOffset?,
+      opacity: result[11] as double?,
     );
   }
 }

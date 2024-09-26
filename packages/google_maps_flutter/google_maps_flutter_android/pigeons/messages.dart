@@ -369,33 +369,33 @@ class PlatformCluster {
 }
 
 class PlatformGroundOverlay {
-  const PlatformGroundOverlay({
+  PlatformGroundOverlay({
     required this.groundOverlayId,
-    required this.consumeTapEvents,
-    required this.position,
-    required this.zIndex,
-    required this.visible,
-    required this.icon,
-    required this.bounds,
-    required this.width,
-    required this.height,
-    required this.bearing,
-    required this.anchor,
-    required this.opacity,
+    this.consumeTapEvents = false,
+    this.position,
+    this.zIndex = 0,
+    this.visible = true,
+    this.icon,
+    this.bounds,
+    this.width,
+    this.height,
+    this.bearing = 0.0,
+    this.anchor,
+    this.opacity,
   });
 
   final String groundOverlayId;
   final bool consumeTapEvents;
-  final PlatformLatLng position;
+  final PlatformLatLng? position;
   final int zIndex;
   final bool visible;
-  final Object icon;
-  final PlatformLatLngBounds bounds;
-  final double width;
-  final double height;
+  final Object? icon;
+  final PlatformLatLngBounds? bounds;
+  final double? width;
+  final double? height;
   final double bearing;
-  final PlatformOffset anchor;
-  final double opacity;
+  final PlatformOffset? anchor;
+  final double? opacity;
 }
 
 /// Pigeon equivalent of CameraTargetBounds.

@@ -491,6 +491,8 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
           mapObjects.tileOverlays.map(_platformTileOverlayFromTileOverlay).toList(),
       initialClusterManagers:
           mapObjects.clusterManagers.map(_platformClusterManagerFromClusterManager).toList(),
+      initialGroundOverlays:
+          mapObjects.groundOverlays.map(_platformGroundOverlayFromGroundOverlay).toList(),
     );
 
     const String viewType = 'plugins.flutter.dev/google_maps_android';
@@ -668,6 +670,27 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
       radius: circle.radius,
       circleId: circle.circleId.value,
     );
+  }
+
+  static PlatformGroundOverlay _platformGroundOverlayFromGroundOverlay(GroundOverlay overlay) {
+    return PlatformGroundOverlay(
+      consumeTapEvents: overlay.consumeTapEvents,
+      visible: overlay.visible,
+      zIndex: overlay.zIndex,
+      groundOverlayId: overlay.groundOverlayId.value,
+      position: overlay.position == null ? null : _platformLatLngFromLatLng(overlay.position!),
+      icon: overlay.icon?.toJson(),
+      bounds: _platformLatLngBoundsFromLatLngBounds(overlay.bounds),
+      width: overlay.width,
+      height: overlay.height,
+      bearing: overlay.bearing,
+      anchor: _getPlatformOffsetFromOffset(overlay.anchor, PlatformOffset(dx: 0.5, dy: 0.5)),
+      opacity: overlay.opacity,
+    );
+  }
+
+  static PlatformOffset _getPlatformOffsetFromOffset(Offset? offset, PlatformOffset defaultValue) {
+    return offset == null ? defaultValue : PlatformOffset(dx: offset.dx, dy: offset.dy);
   }
 
   static PlatformHeatmap _platformHeatmapFromHeatmap(Heatmap heatmap) {
