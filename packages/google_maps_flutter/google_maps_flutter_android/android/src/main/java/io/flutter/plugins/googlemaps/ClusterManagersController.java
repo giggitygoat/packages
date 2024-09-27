@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 package io.flutter.plugins.googlemaps;
-
+import android.graphics.Color;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -91,6 +91,11 @@ class ClusterManagersController
         new ClusterManager<MarkerBuilder>(context, googleMap, markerManager);
     ClusterRenderer<MarkerBuilder> clusterRenderer =
         new ClusterRenderer<MarkerBuilder>(context, googleMap, clusterManager, this);
+    googleMap.setOnCameraMoveListener(() -> {
+            clusterRenderer.setZoomLevel(googleMap.getCameraPosition().zoom);
+        });
+
+    clusterRenderer.setMinClusterSize(4);
     clusterManager.setRenderer(clusterRenderer);
     initListenersForClusterManager(clusterManager, this, clusterItemClickListener);
     clusterManagerIdToManager.put(clusterManagerId, clusterManager);
@@ -210,6 +215,12 @@ class ClusterManagersController
       this.clusterManagersController = clusterManagersController;
     }
 
+     private float mZoomLevel = 15;
+
+    public void setZoomLevel(float mZoomLevel) {
+        this.mZoomLevel = mZoomLevel;
+    }
+
     @Override
     protected void onBeforeClusterItemRendered(
         @NonNull T item, @NonNull MarkerOptions markerOptions) {
@@ -222,6 +233,22 @@ class ClusterManagersController
     protected void onClusterItemRendered(@NonNull T item, @NonNull Marker marker) {
       super.onClusterItemRendered(item, marker);
       clusterManagersController.onClusterItemRendered(item, marker);
+    }
+
+     @Override
+    protected boolean shouldRenderAsCluster(Cluster<T> cluster) {
+        return mZoomLevel < 15.5;
+    }
+
+    @Override
+    public int getColor(int clusterSize) {
+        final float hueRange = 120;
+        final float sizeRange = 300;
+        final float size = Math.min(clusterSize, sizeRange);
+        final float hue = (sizeRange - size) * (sizeRange - size) / (sizeRange * sizeRange) * hueRange;
+        return Color.HSVToColor(new float[]{
+                hue, 1f, .6f
+        });
     }
   }
 

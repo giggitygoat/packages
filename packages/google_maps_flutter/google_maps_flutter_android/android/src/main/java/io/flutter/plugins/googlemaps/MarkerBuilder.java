@@ -8,6 +8,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterItem;
+import androidx.annotation.Nullable;
 
 class MarkerBuilder implements MarkerOptionsSink, ClusterItem {
   private final MarkerOptions markerOptions;
