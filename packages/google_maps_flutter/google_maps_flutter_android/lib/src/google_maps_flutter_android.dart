@@ -408,6 +408,13 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
   }
 
   @override
+  Future<List<String>> getClusteredMarkers({
+    required int mapId,
+  }) async {
+    return _hostApi(mapId).getClusteredMarkers();
+  }
+
+  @override
   Future<void> showMarkerInfoWindow(
     MarkerId markerId, {
     required int mapId,
@@ -436,6 +443,17 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
     required int mapId,
   }) {
     return _hostApi(mapId).getZoomLevel();
+  }
+
+  @override
+  Future<List<Cluster>> getClusters({
+    required int mapId,
+    required ClusterManagerId clusterManagerId,
+  }) async {
+    return (await _hostApi(mapId).getClusters(clusterManagerId.value))
+        .map((PlatformCluster? cluster) =>
+            GoogleMapsFlutterAndroid.clusterFromPlatformCluster(cluster!))
+        .toList();
   }
 
   @override

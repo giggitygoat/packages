@@ -256,6 +256,11 @@ class GoogleMapController {
     return GoogleMapsFlutterPlatform.instance.getLatLng(screenCoordinate, mapId: mapId);
   }
 
+  /// TEST
+  Future<List<String>> getClusteredMarkers() {
+    return GoogleMapsFlutterPlatform.instance.getClusteredMarkers(mapId: mapId);
+  }
+
   /// Programmatically show the Info Window for a [Marker].
   ///
   /// The `markerId` must match one of the markers on the map.
@@ -290,6 +295,12 @@ class GoogleMapController {
   ///   * [hideMarkerInfoWindow] to hide the Info Window.
   Future<bool> isMarkerInfoWindowShown(MarkerId markerId) {
     return GoogleMapsFlutterPlatform.instance.isMarkerInfoWindowShown(markerId, mapId: mapId);
+  }
+
+  /// GG
+  Future<List<Cluster>> getClusters(ClusterManagerId clusterManagerId) {
+    return GoogleMapsFlutterPlatform.instance
+        .getClusters(clusterManagerId: clusterManagerId, mapId: mapId);
   }
 
   /// Returns the current zoom level of the map

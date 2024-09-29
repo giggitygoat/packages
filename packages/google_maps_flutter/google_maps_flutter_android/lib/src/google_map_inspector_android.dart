@@ -13,8 +13,7 @@ import 'messages.g.dart';
 class GoogleMapsInspectorAndroid extends GoogleMapsInspectorPlatform {
   /// Creates an inspector API instance for a given map ID from
   /// [inspectorProvider].
-  GoogleMapsInspectorAndroid(
-      MapsInspectorApi? Function(int mapId) inspectorProvider)
+  GoogleMapsInspectorAndroid(MapsInspectorApi? Function(int mapId) inspectorProvider)
       : _inspectorProvider = inspectorProvider;
 
   final MapsInspectorApi? Function(int mapId) _inspectorProvider;
@@ -51,16 +50,14 @@ class GoogleMapsInspectorAndroid extends GoogleMapsInspectorPlatform {
 
   @override
   Future<MinMaxZoomPreference> getMinMaxZoomLevels({required int mapId}) async {
-    final PlatformZoomRange zoomLevels =
-        await _inspectorProvider(mapId)!.getZoomRange();
+    final PlatformZoomRange zoomLevels = await _inspectorProvider(mapId)!.getZoomRange();
     return MinMaxZoomPreference(zoomLevels.min, zoomLevels.max);
   }
 
   @override
-  Future<TileOverlay?> getTileOverlayInfo(TileOverlayId tileOverlayId,
-      {required int mapId}) async {
-    final PlatformTileLayer? tileInfo = await _inspectorProvider(mapId)!
-        .getTileOverlayInfo(tileOverlayId.value);
+  Future<TileOverlay?> getTileOverlayInfo(TileOverlayId tileOverlayId, {required int mapId}) async {
+    final PlatformTileLayer? tileInfo =
+        await _inspectorProvider(mapId)!.getTileOverlayInfo(tileOverlayId.value);
     if (tileInfo == null) {
       return null;
     }
@@ -102,18 +99,5 @@ class GoogleMapsInspectorAndroid extends GoogleMapsInspectorPlatform {
   @override
   Future<bool> isTrafficEnabled({required int mapId}) async {
     return _inspectorProvider(mapId)!.isTrafficEnabled();
-  }
-
-  @override
-  Future<List<Cluster>> getClusters({
-    required int mapId,
-    required ClusterManagerId clusterManagerId,
-  }) async {
-    return (await _inspectorProvider(mapId)!
-            .getClusters(clusterManagerId.value))
-        // See comment in messages.dart for why the force unwrap is okay.
-        .map((PlatformCluster? cluster) =>
-            GoogleMapsFlutterAndroid.clusterFromPlatformCluster(cluster!))
-        .toList();
   }
 }

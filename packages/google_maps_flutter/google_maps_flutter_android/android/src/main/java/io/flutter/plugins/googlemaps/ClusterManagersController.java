@@ -34,6 +34,10 @@ class ClusterManagersController
   @Nullable private MarkerManager markerManager;
   @Nullable private GoogleMap googleMap;
 
+
+
+  public double zoomLevel = 0.0;
+
   @Nullable
   private ClusterManager.OnClusterItemClickListener<MarkerBuilder> clusterItemClickListener;
 
@@ -91,9 +95,7 @@ class ClusterManagersController
         new ClusterManager<MarkerBuilder>(context, googleMap, markerManager);
     ClusterRenderer<MarkerBuilder> clusterRenderer =
         new ClusterRenderer<MarkerBuilder>(context, googleMap, clusterManager, this);
-    googleMap.setOnCameraMoveListener(() -> {
-            clusterRenderer.setZoomLevel(googleMap.getCameraPosition().zoom);
-        });
+    
 
     clusterRenderer.setMinClusterSize(4);
     clusterManager.setRenderer(clusterRenderer);
@@ -215,11 +217,14 @@ class ClusterManagersController
       this.clusterManagersController = clusterManagersController;
     }
 
-     private float mZoomLevel = 15;
 
-    public void setZoomLevel(float mZoomLevel) {
-        this.mZoomLevel = mZoomLevel;
+    @Override
+    public void onClustersChanged(Set<? extends Cluster<T>> clusters) {
+      super.onClustersChanged(clusters);
+      
     }
+
+     
 
     @Override
     protected void onBeforeClusterItemRendered(
@@ -227,6 +232,7 @@ class ClusterManagersController
       // Builds new markerOptions for new marker created by the ClusterRenderer under
       // ClusterManager.
       item.update(markerOptions);
+      
     }
 
     @Override
@@ -237,7 +243,7 @@ class ClusterManagersController
 
      @Override
     protected boolean shouldRenderAsCluster(Cluster<T> cluster) {
-        return mZoomLevel < 15.5;
+        return clusterManagersController.zoomLevel < 15.5;
     }
 
     @Override

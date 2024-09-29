@@ -205,6 +205,13 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('animateCamera() has not been implemented.');
   }
 
+  /// TEST
+  Future<List<String>> getClusteredMarkers({
+    required int mapId,
+  }) {
+    throw UnimplementedError('getClusteredMarkers() has not been implemented.');
+  }
+
   /// Changes the map camera position.
   ///
   /// The returned [Future] completes after the change has been made on the
@@ -311,6 +318,14 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
 
   /// Returns the current zoom level of the map.
   Future<double> getZoomLevel({
+    required int mapId,
+  }) {
+    throw UnimplementedError('getZoomLevel() has not been implemented.');
+  }
+
+  ///t
+  Future<List<Cluster>> getClusters({
+    required ClusterManagerId clusterManagerId,
     required int mapId,
   }) {
     throw UnimplementedError('getZoomLevel() has not been implemented.');

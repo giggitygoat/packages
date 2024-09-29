@@ -590,6 +590,8 @@ abstract class MapsApi {
   /// Gets the map location for the given screen coordinate.
   PlatformLatLng getLatLng(PlatformPoint screenCoordinate);
 
+  List<String> getClusteredMarkers();
+
   /// Gets the map region currently displayed on the map.
   PlatformLatLngBounds getVisibleRegion();
 
@@ -633,6 +635,8 @@ abstract class MapsApi {
   /// Takes a snapshot of the map and returns its image data.
   @async
   Uint8List takeSnapshot();
+
+  List<PlatformCluster?> getClusters(String clusterManagerId);
 }
 
 @FlutterApi()
@@ -728,5 +732,4 @@ abstract class MapsInspectorApi {
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
-  List<PlatformCluster?> getClusters(String clusterManagerId);
 }

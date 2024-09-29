@@ -5195,6 +5195,9 @@ public class Messages {
     /** Gets the map location for the given screen coordinate. */
     @NonNull 
     PlatformLatLng getLatLng(@NonNull PlatformPoint screenCoordinate);
+
+    @NonNull 
+    List<String> getClusteredMarkers();
     /** Gets the map region currently displayed on the map. */
     @NonNull 
     PlatformLatLngBounds getVisibleRegion();
@@ -5240,6 +5243,9 @@ public class Messages {
     void clearTileCache(@NonNull String tileOverlayId);
     /** Takes a snapshot of the map and returns its image data. */
     void takeSnapshot(@NonNull Result<byte[]> result);
+
+    @NonNull 
+    List<PlatformCluster> getClusters(@NonNull String clusterManagerId);
 
     /** The codec used by MapsApi. */
     static @NonNull MessageCodec<Object> getCodec() {
@@ -5549,6 +5555,27 @@ public class Messages {
       {
         BasicMessageChannel<Object> channel =
             new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getClusteredMarkers" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                try {
+                  List<String> output = api.getClusteredMarkers();
+                  wrapped.add(0, output);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
                 binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getVisibleRegion" + messageChannelSuffix, getCodec());
         if (api != null) {
           channel.setMessageHandler(
@@ -5792,6 +5819,29 @@ public class Messages {
                     };
 
                 api.takeSnapshot(resultCallback);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getClusters" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String clusterManagerIdArg = (String) args.get(0);
+                try {
+                  List<PlatformCluster> output = api.getClusters(clusterManagerIdArg);
+                  wrapped.add(0, output);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
               });
         } else {
           channel.setMessageHandler(null);
@@ -6309,9 +6359,6 @@ public class Messages {
     @NonNull 
     PlatformZoomRange getZoomRange();
 
-    @NonNull 
-    List<PlatformCluster> getClusters(@NonNull String clusterManagerId);
-
     /** The codec used by MapsInspectorApi. */
     static @NonNull MessageCodec<Object> getCodec() {
       return PigeonCodec.INSTANCE;
@@ -6586,29 +6633,6 @@ public class Messages {
                 ArrayList<Object> wrapped = new ArrayList<>();
                 try {
                   PlatformZoomRange output = api.getZoomRange();
-                  wrapped.add(0, output);
-                }
- catch (Throwable exception) {
-                  wrapped = wrapError(exception);
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsInspectorApi.getClusters" + messageChannelSuffix, getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String clusterManagerIdArg = (String) args.get(0);
-                try {
-                  List<PlatformCluster> output = api.getClusters(clusterManagerIdArg);
                   wrapped.add(0, output);
                 }
  catch (Throwable exception) {

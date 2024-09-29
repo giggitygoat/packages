@@ -40,7 +40,7 @@ class MarkerBuilder implements MarkerOptionsSink, ClusterItem {
     markerOptionsToUpdate.position(markerOptions.getPosition());
     markerOptionsToUpdate.rotation(markerOptions.getRotation());
     markerOptionsToUpdate.visible(markerOptions.isVisible());
-    markerOptionsToUpdate.zIndex(markerOptions.getZIndex());
+    markerOptionsToUpdate.zIndex(0.5f);
   }
 
   boolean consumeTapEvents() {
@@ -133,6 +133,6 @@ class MarkerBuilder implements MarkerOptionsSink, ClusterItem {
 
   @Override
   public Float getZIndex() {
-    return markerOptions.getZIndex();
+    return 0.5f;
   }
 }

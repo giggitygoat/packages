@@ -318,56 +318,55 @@ abstract class MapsApi {
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
   @ObjCSelector('updateCirclesByAdding:changing:removing:')
-  void updateCircles(List<PlatformCircle?> toAdd,
-      List<PlatformCircle?> toChange, List<String?> idsToRemove);
+  void updateCircles(
+      List<PlatformCircle?> toAdd, List<PlatformCircle?> toChange, List<String?> idsToRemove);
 
   /// Updates the set of heatmaps on the map.
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
   @ObjCSelector('updateHeatmapsByAdding:changing:removing:')
-  void updateHeatmaps(List<PlatformHeatmap?> toAdd,
-      List<PlatformHeatmap?> toChange, List<String?> idsToRemove);
+  void updateHeatmaps(
+      List<PlatformHeatmap?> toAdd, List<PlatformHeatmap?> toChange, List<String?> idsToRemove);
 
   /// Updates the set of custer managers for clusters on the map.
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
   @ObjCSelector('updateClusterManagersByAdding:removing:')
-  void updateClusterManagers(
-      List<PlatformClusterManager?> toAdd, List<String?> idsToRemove);
+  void updateClusterManagers(List<PlatformClusterManager?> toAdd, List<String?> idsToRemove);
 
   /// Updates the set of markers on the map.
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
   @ObjCSelector('updateMarkersByAdding:changing:removing:')
-  void updateMarkers(List<PlatformMarker?> toAdd,
-      List<PlatformMarker?> toChange, List<String?> idsToRemove);
+  void updateMarkers(
+      List<PlatformMarker?> toAdd, List<PlatformMarker?> toChange, List<String?> idsToRemove);
 
   /// Updates the set of polygonss on the map.
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
   @ObjCSelector('updatePolygonsByAdding:changing:removing:')
-  void updatePolygons(List<PlatformPolygon?> toAdd,
-      List<PlatformPolygon?> toChange, List<String?> idsToRemove);
+  void updatePolygons(
+      List<PlatformPolygon?> toAdd, List<PlatformPolygon?> toChange, List<String?> idsToRemove);
 
   /// Updates the set of polylines on the map.
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
   @ObjCSelector('updatePolylinesByAdding:changing:removing:')
-  void updatePolylines(List<PlatformPolyline?> toAdd,
-      List<PlatformPolyline?> toChange, List<String?> idsToRemove);
+  void updatePolylines(
+      List<PlatformPolyline?> toAdd, List<PlatformPolyline?> toChange, List<String?> idsToRemove);
 
   /// Updates the set of tile overlays on the map.
   // TODO(stuartmorgan): Make the generic type non-nullable once supported.
   // https://github.com/flutter/flutter/issues/97848
   // The consuming code treats the entries as non-nullable.
   @ObjCSelector('updateTileOverlaysByAdding:changing:removing:')
-  void updateTileOverlays(List<PlatformTileOverlay?> toAdd,
-      List<PlatformTileOverlay?> toChange, List<String?> idsToRemove);
+  void updateTileOverlays(List<PlatformTileOverlay?> toAdd, List<PlatformTileOverlay?> toChange,
+      List<String?> idsToRemove);
 
   /// Gets the screen coordinate for the given map location.
   @ObjCSelector('screenCoordinatesForLatLng:')
@@ -493,8 +492,7 @@ abstract class MapsCallbackApi {
   /// Called to get data for a map tile.
   @async
   @ObjCSelector('tileWithOverlayIdentifier:location:zoom:')
-  PlatformTile getTileOverlayTile(
-      String tileOverlayId, PlatformPoint location, int zoom);
+  PlatformTile getTileOverlayTile(String tileOverlayId, PlatformPoint location, int zoom);
 }
 
 /// Dummy interface to force generation of the platform view creation params,

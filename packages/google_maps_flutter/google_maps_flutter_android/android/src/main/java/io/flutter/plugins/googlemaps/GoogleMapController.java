@@ -10,6 +10,8 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+
+import com.google.android.gms.maps.model.CameraPosition;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
@@ -327,13 +329,19 @@ class GoogleMapController
     markersController.onInfoWindowTap(marker.getId());
   }
 
+
   @Override
   public void onCameraMove() {
     if (!trackCameraPosition) {
       return;
     }
+    CameraPosition cameraPosition = googleMap.getCameraPosition();
+
     flutterApi.onCameraMove(
-        Convert.cameraPositionToPigeon(googleMap.getCameraPosition()), new NoOpVoidResult());
+        Convert.cameraPositionToPigeon(cameraPosition), new NoOpVoidResult());
+
+    clusterManagersController.zoomLevel = cameraPosition.zoom;
+   
   }
 
   @Override
@@ -952,6 +960,18 @@ class GoogleMapController
     LatLng latLng =
         googleMap.getProjection().fromScreenLocation(Convert.pointFromPigeon(screenCoordinate));
     return Convert.latLngToPigeon(latLng);
+  }
+
+  @Override
+  public @NonNull List<String> getClusteredMarkers() {
+    if (googleMap == null) {
+      throw new FlutterError(
+          "GoogleMap uninitialized", "getLatLng called prior to map initialization", null);
+    }
+    ArrayList<String> cars = new ArrayList<String>();
+    cars.add("Volvo");
+
+    return cars;
   }
 
   @Override

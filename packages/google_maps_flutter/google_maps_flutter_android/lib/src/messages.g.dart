@@ -1836,6 +1836,33 @@ class MapsApi {
     }
   }
 
+  Future<List<String>> getClusteredMarkers() async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getClusteredMarkers$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_channel.send(null) as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as List<Object?>?)!.cast<String>();
+    }
+  }
+
   /// Gets the map region currently displayed on the map.
   Future<PlatformLatLngBounds> getVisibleRegion() async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getVisibleRegion$pigeonVar_messageChannelSuffix';
@@ -2126,6 +2153,33 @@ class MapsApi {
       );
     } else {
       return (pigeonVar_replyList[0] as Uint8List?)!;
+    }
+  }
+
+  Future<List<PlatformCluster?>> getClusters(String clusterManagerId) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getClusters$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_channel.send(<Object?>[clusterManagerId]) as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as List<Object?>?)!.cast<PlatformCluster?>();
     }
   }
 }
@@ -3028,33 +3082,6 @@ class MapsInspectorApi {
       );
     } else {
       return (pigeonVar_replyList[0] as PlatformZoomRange?)!;
-    }
-  }
-
-  Future<List<PlatformCluster?>> getClusters(String clusterManagerId) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsInspectorApi.getClusters$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-      pigeonVar_channelName,
-      pigeonChannelCodec,
-      binaryMessenger: pigeonVar_binaryMessenger,
-    );
-    final List<Object?>? pigeonVar_replyList =
-        await pigeonVar_channel.send(<Object?>[clusterManagerId]) as List<Object?>?;
-    if (pigeonVar_replyList == null) {
-      throw _createConnectionError(pigeonVar_channelName);
-    } else if (pigeonVar_replyList.length > 1) {
-      throw PlatformException(
-        code: pigeonVar_replyList[0]! as String,
-        message: pigeonVar_replyList[1] as String?,
-        details: pigeonVar_replyList[2],
-      );
-    } else if (pigeonVar_replyList[0] == null) {
-      throw PlatformException(
-        code: 'null-error',
-        message: 'Host platform returned null value for non-null return value.',
-      );
-    } else {
-      return (pigeonVar_replyList[0] as List<Object?>?)!.cast<PlatformCluster?>();
     }
   }
 }
