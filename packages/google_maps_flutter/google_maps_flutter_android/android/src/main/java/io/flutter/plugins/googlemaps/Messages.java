@@ -5196,8 +5196,9 @@ public class Messages {
     @NonNull 
     PlatformLatLng getLatLng(@NonNull PlatformPoint screenCoordinate);
 
-    @NonNull 
-    List<String> getClusteredMarkers();
+    void setOverlaysVisibility(@NonNull List<String> overlayIds, @NonNull Boolean isVisible);
+
+    void setOverlayImage(@NonNull String overlayId, @NonNull Object image);
     /** Gets the map region currently displayed on the map. */
     @NonNull 
     PlatformLatLngBounds getVisibleRegion();
@@ -5555,14 +5556,41 @@ public class Messages {
       {
         BasicMessageChannel<Object> channel =
             new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getClusteredMarkers" + messageChannelSuffix, getCodec());
+                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.setOverlaysVisibility" + messageChannelSuffix, getCodec());
         if (api != null) {
           channel.setMessageHandler(
               (message, reply) -> {
                 ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                List<String> overlayIdsArg = (List<String>) args.get(0);
+                Boolean isVisibleArg = (Boolean) args.get(1);
                 try {
-                  List<String> output = api.getClusteredMarkers();
-                  wrapped.add(0, output);
+                  api.setOverlaysVisibility(overlayIdsArg, isVisibleArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.setOverlayImage" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String overlayIdArg = (String) args.get(0);
+                Object imageArg = args.get(1);
+                try {
+                  api.setOverlayImage(overlayIdArg, imageArg);
+                  wrapped.add(0, null);
                 }
  catch (Throwable exception) {
                   wrapped = wrapError(exception);

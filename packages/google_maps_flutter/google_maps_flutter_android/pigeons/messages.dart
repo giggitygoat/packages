@@ -590,7 +590,9 @@ abstract class MapsApi {
   /// Gets the map location for the given screen coordinate.
   PlatformLatLng getLatLng(PlatformPoint screenCoordinate);
 
-  List<String> getClusteredMarkers();
+  void setOverlaysVisibility(List<String> overlayIds, bool isVisible);
+
+  void setOverlayImage(String overlayId, Object image);
 
   /// Gets the map region currently displayed on the map.
   PlatformLatLngBounds getVisibleRegion();

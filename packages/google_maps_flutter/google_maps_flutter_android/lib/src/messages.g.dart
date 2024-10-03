@@ -1836,15 +1836,15 @@ class MapsApi {
     }
   }
 
-  Future<List<String>> getClusteredMarkers() async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.getClusteredMarkers$pigeonVar_messageChannelSuffix';
+  Future<void> setOverlaysVisibility(List<String> overlayIds, bool isVisible) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.setOverlaysVisibility$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
     final List<Object?>? pigeonVar_replyList =
-        await pigeonVar_channel.send(null) as List<Object?>?;
+        await pigeonVar_channel.send(<Object?>[overlayIds, isVisible]) as List<Object?>?;
     if (pigeonVar_replyList == null) {
       throw _createConnectionError(pigeonVar_channelName);
     } else if (pigeonVar_replyList.length > 1) {
@@ -1853,13 +1853,30 @@ class MapsApi {
         message: pigeonVar_replyList[1] as String?,
         details: pigeonVar_replyList[2],
       );
-    } else if (pigeonVar_replyList[0] == null) {
+    } else {
+      return;
+    }
+  }
+
+  Future<void> setOverlayImage(String overlayId, Object image) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.setOverlayImage$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_channel.send(<Object?>[overlayId, image]) as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
       throw PlatformException(
-        code: 'null-error',
-        message: 'Host platform returned null value for non-null return value.',
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
       );
     } else {
-      return (pigeonVar_replyList[0] as List<Object?>?)!.cast<String>();
+      return;
     }
   }
 

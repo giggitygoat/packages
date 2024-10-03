@@ -77,6 +77,7 @@ class GoogleMapController
   private final GoogleMapOptions options;
   @Nullable private MapView mapView;
   @Nullable private GoogleMap googleMap;
+  private final AssetManager assetManager;
   private boolean trackCameraPosition = false;
   private boolean myLocationEnabled = false;
   private boolean myLocationButtonEnabled = false;
@@ -127,7 +128,7 @@ class GoogleMapController
     flutterApi = new MapsCallbackApi(binaryMessenger, Integer.toString(id));
     MapsApi.setUp(binaryMessenger, Integer.toString(id), this);
     MapsInspectorApi.setUp(binaryMessenger, Integer.toString(id), this);
-    AssetManager assetManager = context.getAssets();
+    this.assetManager = context.getAssets();
     this.lifecycleProvider = lifecycleProvider;
     this.clusterManagersController = new ClusterManagersController(flutterApi, context);
     this.markersController =
@@ -178,6 +179,7 @@ class GoogleMapController
     this.heatmapsController = heatmapController;
     this.tileOverlaysController = tileOverlaysController;
     this.groundOverlaysController = groundOverlaysController;
+    this.assetManager = context.getAssets();
   }
 
   @Override
@@ -963,15 +965,23 @@ class GoogleMapController
   }
 
   @Override
-  public @NonNull List<String> getClusteredMarkers() {
+  public void setOverlaysVisibility(@NonNull List<String> overlayIds,  @NonNull Boolean isVisible) {
     if (googleMap == null) {
       throw new FlutterError(
           "GoogleMap uninitialized", "getLatLng called prior to map initialization", null);
     }
-    ArrayList<String> cars = new ArrayList<String>();
-    cars.add("Volvo");
+    for (String overlayId : overlayIds) {
+      groundOverlaysController.groundOverlayIdToController.get(overlayId).setVisible(isVisible);
+    } 
+  }
 
-    return cars;
+  @Override
+  public void setOverlayImage(@NonNull String groundOverlayId, @NonNull Object image) {
+    if (googleMap == null) {
+      throw new FlutterError(
+          "GoogleMap uninitialized", "setImageOfOverlay called prior to map initialization", null);
+    }
+    groundOverlaysController.groundOverlayIdToController.get(groundOverlayId).setIcon(Convert.toBitmapDescriptor(image, assetManager, density));
   }
 
   @Override

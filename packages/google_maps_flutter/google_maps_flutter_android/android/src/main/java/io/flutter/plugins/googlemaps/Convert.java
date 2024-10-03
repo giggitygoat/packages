@@ -61,7 +61,7 @@ class Convert {
   public static final String HEATMAP_GRADIENT_START_POINTS_KEY = "startPoints";
   public static final String HEATMAP_GRADIENT_COLOR_MAP_SIZE_KEY = "colorMapSize";
 
-  private static BitmapDescriptor toBitmapDescriptor(
+  public static BitmapDescriptor toBitmapDescriptor(
       Object o, AssetManager assetManager, float density) {
     return toBitmapDescriptor(o, assetManager, density, new BitmapDescriptorFactoryWrapper());
   }

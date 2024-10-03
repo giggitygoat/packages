@@ -408,10 +408,21 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
   }
 
   @override
-  Future<List<String>> getClusteredMarkers({
+  Future<void> setOverlaysVisibility({
+    required List<String> overlayIds,
+    required bool isVisible,
     required int mapId,
   }) async {
-    return _hostApi(mapId).getClusteredMarkers();
+    return _hostApi(mapId).setOverlaysVisibility(overlayIds, isVisible);
+  }
+
+  @override
+  Future<void> setOverlayImage({
+    required String overlayId,
+    required BitmapDescriptor image,
+    required int mapId,
+  }) async {
+    return _hostApi(mapId).setOverlayImage(overlayId, image.toJson());
   }
 
   @override

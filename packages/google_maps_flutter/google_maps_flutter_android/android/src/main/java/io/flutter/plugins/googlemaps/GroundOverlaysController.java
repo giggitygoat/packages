@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 
 class GroundOverlaysController {
   private GoogleMap googleMap;
-  private final Map<String, GroundOverlayController> groundOverlayIdToController;
+  public final Map<String, GroundOverlayController> groundOverlayIdToController;
   private final Map<String, String> googleMapsGroundOverlayIdToDartOverlayId;
   private final @NonNull MapsCallbackApi flutterApi;
   private final AssetManager assetManager;
