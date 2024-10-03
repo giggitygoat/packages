@@ -86,8 +86,7 @@ class BitmapDescriptor {
       case AssetMapBitmap.type:
         assert(jsonList.length == 2);
         assert(jsonList[1] != null && jsonList[1] is Map<String, dynamic>);
-        final Map<String, dynamic> jsonMap =
-            jsonList[1] as Map<String, dynamic>;
+        final Map<String, dynamic> jsonMap = jsonList[1] as Map<String, dynamic>;
         assert(jsonMap.containsKey('assetName'));
         assert(jsonMap.containsKey('bitmapScaling'));
         assert(jsonMap.containsKey('imagePixelRatio'));
@@ -99,8 +98,7 @@ class BitmapDescriptor {
       case BytesMapBitmap.type:
         assert(jsonList.length == 2);
         assert(jsonList[1] != null && jsonList[1] is Map<String, dynamic>);
-        final Map<String, dynamic> jsonMap =
-            jsonList[1] as Map<String, dynamic>;
+        final Map<String, dynamic> jsonMap = jsonList[1] as Map<String, dynamic>;
         assert(jsonMap.containsKey('byteData'));
         assert(jsonMap.containsKey('bitmapScaling'));
         assert(jsonMap.containsKey('imagePixelRatio'));
@@ -160,8 +158,7 @@ class BitmapDescriptor {
   static const double hueRose = 330.0;
 
   /// Creates a BitmapDescriptor that refers to the default marker image.
-  static const BitmapDescriptor defaultMarker =
-      BitmapDescriptor._(<Object>[_defaultMarker]);
+  static const BitmapDescriptor defaultMarker = BitmapDescriptor._(<Object>[_defaultMarker]);
 
   /// Creates a BitmapDescriptor that refers to a colorization of the default
   /// marker image. For convenience, there is a predefined set of hue values.
@@ -195,10 +192,8 @@ class BitmapDescriptor {
         devicePixelRatio,
       ]);
     }
-    final AssetImage assetImage =
-        AssetImage(assetName, package: package, bundle: bundle);
-    final AssetBundleImageKey assetBundleImageKey =
-        await assetImage.obtainKey(configuration);
+    final AssetImage assetImage = AssetImage(assetName, package: package, bundle: bundle);
+    final AssetBundleImageKey assetBundleImageKey = await assetImage.obtainKey(configuration);
     final Size? size = configuration.size;
     return BitmapDescriptor._(<Object>[
       _fromAssetImage,
@@ -220,8 +215,7 @@ class BitmapDescriptor {
   /// `size` is not required (and ignored, if passed) in other platforms.
   @Deprecated('Use BitmapDescriptor.bytes method instead.')
   static BitmapDescriptor fromBytes(Uint8List byteData, {Size? size}) {
-    assert(byteData.isNotEmpty,
-        'Cannot create BitmapDescriptor with empty byteData');
+    assert(byteData.isNotEmpty, 'Cannot create BitmapDescriptor with empty byteData');
     return BitmapDescriptor._(<Object>[
       _fromBytes,
       byteData,
@@ -538,8 +532,7 @@ class AssetMapBitmap extends MapBitmap {
     super.width,
     super.height,
   })  : assert(assetName.isNotEmpty, 'The asset name must not be empty.'),
-        assert(imagePixelRatio > 0.0,
-            'The imagePixelRatio must be greater than 0.'),
+        assert(imagePixelRatio > 0.0, 'The imagePixelRatio must be greater than 0.'),
         assert(bitmapScaling != MapBitmapScaling.none || width == null,
             'If bitmapScaling is set to MapBitmapScaling.none, width parameter cannot be used.'),
         assert(bitmapScaling != MapBitmapScaling.none || height == null,
@@ -639,10 +632,8 @@ class AssetMapBitmap extends MapBitmap {
     MapBitmapScaling bitmapScaling = MapBitmapScaling.auto,
   }) async {
     assert(assetName.isNotEmpty, 'The asset name must not be empty.');
-    final AssetImage assetImage =
-        AssetImage(assetName, package: package, bundle: bundle);
-    final AssetBundleImageKey assetBundleImageKey =
-        await assetImage.obtainKey(configuration);
+    final AssetImage assetImage = AssetImage(assetName, package: package, bundle: bundle);
+    final AssetBundleImageKey assetBundleImageKey = await assetImage.obtainKey(configuration);
 
     return AssetMapBitmap._(
         assetName: assetBundleImageKey.name,
@@ -811,10 +802,8 @@ class BytesMapBitmap extends MapBitmap {
     super.width,
     super.height,
     double? imagePixelRatio,
-  })  : assert(byteData.isNotEmpty,
-            'Cannot create BitmapDescriptor with empty byteData.'),
-        assert(
-            bitmapScaling != MapBitmapScaling.none || imagePixelRatio == null,
+  })  : assert(byteData.isNotEmpty, 'Cannot create BitmapDescriptor with empty byteData.'),
+        assert(bitmapScaling != MapBitmapScaling.none || imagePixelRatio == null,
             'If bitmapScaling is set to MapBitmapScaling.none, imagePixelRatio parameter cannot be used.'),
         assert(bitmapScaling != MapBitmapScaling.none || width == null,
             'If bitmapScaling is set to MapBitmapScaling.none, width parameter cannot be used.'),

@@ -206,10 +206,21 @@ abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
   }
 
   /// TEST
-  Future<List<String>> getClusteredMarkers({
+  Future<void> setOverlaysVisibility({
+    required List<String> overlayIds,
+    required bool isVisible,
     required int mapId,
   }) {
-    throw UnimplementedError('getClusteredMarkers() has not been implemented.');
+    throw UnimplementedError('setOverlaysVisibility() has not been implemented.');
+  }
+
+  /// TEST
+  Future<void> setOverlayImage({
+    required String overlayId,
+    required BitmapDescriptor image,
+    required int mapId,
+  }) {
+    throw UnimplementedError('setOverlaysVisibility() has not been implemented.');
   }
 
   /// Changes the map camera position.

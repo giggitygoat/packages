@@ -257,8 +257,15 @@ class GoogleMapController {
   }
 
   /// TEST
-  Future<List<String>> getClusteredMarkers() {
-    return GoogleMapsFlutterPlatform.instance.getClusteredMarkers(mapId: mapId);
+  Future<void> setOverlaysVisibility(List<String> overlayIds, bool isVisible) {
+    return GoogleMapsFlutterPlatform.instance
+        .setOverlaysVisibility(overlayIds: overlayIds, isVisible: isVisible, mapId: mapId);
+  }
+
+  /// TEST
+  Future<void> setOverlayImage(String overlayId, BitmapDescriptor image) {
+    return GoogleMapsFlutterPlatform.instance
+        .setOverlayImage(overlayId: overlayId, image: image, mapId: mapId);
   }
 
   /// Programmatically show the Info Window for a [Marker].
