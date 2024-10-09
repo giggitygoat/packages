@@ -199,7 +199,7 @@ class GroundOverlay implements MapsObject<GroundOverlay> {
     }
     return other is GroundOverlay &&
         groundOverlayId == other.groundOverlayId &&
-        icon == other.icon &&
+        _identicalIcon(other) &&
         consumeTapEvents == other.consumeTapEvents &&
         opacity == other.opacity &&
         position == other.position &&
@@ -211,6 +211,28 @@ class GroundOverlay implements MapsObject<GroundOverlay> {
         anchor == other.anchor &&
         width == other.width &&
         onTap == other.onTap;
+  }
+
+  bool _identicalIcon(GroundOverlay other) {
+    if (icon == other.icon) {
+      return true;
+    }
+    if (icon == null || other.icon == null) {
+      return false;
+    }
+    var originalIcon = (icon!.toJson() as List).last;
+    var otherIcon = (other.icon!.toJson() as List).last;
+
+    if (originalIcon["byteData"] != otherIcon["byteData"]) {
+      return false;
+    }
+    if (originalIcon["bitmapScaling"] != otherIcon["bitmapScaling"]) {
+      return false;
+    }
+    if (originalIcon["imagePixelRatio"] != otherIcon["imagePixelRatio"]) {
+      return false;
+    }
+    return true;
   }
 
   @override
