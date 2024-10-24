@@ -417,12 +417,11 @@ class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
   }
 
   @override
-  Future<void> setOverlayImage({
-    required String overlayId,
-    required BitmapDescriptor image,
+  Future<void> replaceGroundOverlay({
+    required GroundOverlay overlay,
     required int mapId,
   }) async {
-    return _hostApi(mapId).setOverlayImage(overlayId, image.toJson());
+    return _hostApi(mapId).replaceGroundOverlay(_platformGroundOverlayFromGroundOverlay(overlay));
   }
 
   @override

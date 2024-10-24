@@ -217,6 +217,7 @@ class GroundOverlay implements MapsObject<GroundOverlay> {
     if (icon == other.icon) {
       return true;
     }
+
     if (icon == null || other.icon == null) {
       return false;
     }
@@ -232,6 +233,7 @@ class GroundOverlay implements MapsObject<GroundOverlay> {
     if (originalIcon["imagePixelRatio"] != otherIcon["imagePixelRatio"]) {
       return false;
     }
+
     return true;
   }
 

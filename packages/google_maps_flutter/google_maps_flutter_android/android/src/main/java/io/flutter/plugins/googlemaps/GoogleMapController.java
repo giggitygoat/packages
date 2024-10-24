@@ -976,12 +976,12 @@ class GoogleMapController
   }
 
   @Override
-  public void setOverlayImage(@NonNull String groundOverlayId, @NonNull Object image) {
+  public void replaceGroundOverlay(@NonNull Messages.PlatformGroundOverlay groundOverlay) {
     if (googleMap == null) {
       throw new FlutterError(
-          "GoogleMap uninitialized", "setImageOfOverlay called prior to map initialization", null);
+          "GoogleMap uninitialized", "replaceGroundOverlay called prior to map initialization", null);
     }
-    groundOverlaysController.groundOverlayIdToController.get(groundOverlayId).setIcon(Convert.toBitmapDescriptor(image, assetManager, density));
+    groundOverlaysController.replaceGroundOverlay(groundOverlay);
   }
 
   @Override

@@ -263,9 +263,8 @@ class GoogleMapController {
   }
 
   /// TEST
-  Future<void> setOverlayImage(String overlayId, BitmapDescriptor image) {
-    return GoogleMapsFlutterPlatform.instance
-        .setOverlayImage(overlayId: overlayId, image: image, mapId: mapId);
+  Future<void> replaceGroundOverlay(GroundOverlay overlay) {
+    return GoogleMapsFlutterPlatform.instance.replaceGroundOverlay(overlay: overlay, mapId: mapId);
   }
 
   /// Programmatically show the Info Window for a [Marker].

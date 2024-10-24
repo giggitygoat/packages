@@ -592,7 +592,7 @@ abstract class MapsApi {
 
   void setOverlaysVisibility(List<String> overlayIds, bool isVisible);
 
-  void setOverlayImage(String overlayId, Object image);
+  void replaceGroundOverlay(PlatformGroundOverlay overlay);
 
   /// Gets the map region currently displayed on the map.
   PlatformLatLngBounds getVisibleRegion();

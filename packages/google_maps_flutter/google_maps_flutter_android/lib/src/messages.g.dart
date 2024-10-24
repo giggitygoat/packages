@@ -1858,15 +1858,15 @@ class MapsApi {
     }
   }
 
-  Future<void> setOverlayImage(String overlayId, Object image) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.setOverlayImage$pigeonVar_messageChannelSuffix';
+  Future<void> replaceGroundOverlay(PlatformGroundOverlay overlay) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.google_maps_flutter_android.MapsApi.replaceGroundOverlay$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
     final List<Object?>? pigeonVar_replyList =
-        await pigeonVar_channel.send(<Object?>[overlayId, image]) as List<Object?>?;
+        await pigeonVar_channel.send(<Object?>[overlay]) as List<Object?>?;
     if (pigeonVar_replyList == null) {
       throw _createConnectionError(pigeonVar_channelName);
     } else if (pigeonVar_replyList.length > 1) {

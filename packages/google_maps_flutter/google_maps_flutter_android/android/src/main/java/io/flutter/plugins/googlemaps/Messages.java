@@ -5198,7 +5198,7 @@ public class Messages {
 
     void setOverlaysVisibility(@NonNull List<String> overlayIds, @NonNull Boolean isVisible);
 
-    void setOverlayImage(@NonNull String overlayId, @NonNull Object image);
+    void replaceGroundOverlay(@NonNull PlatformGroundOverlay overlay);
     /** Gets the map region currently displayed on the map. */
     @NonNull 
     PlatformLatLngBounds getVisibleRegion();
@@ -5580,16 +5580,15 @@ public class Messages {
       {
         BasicMessageChannel<Object> channel =
             new BasicMessageChannel<>(
-                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.setOverlayImage" + messageChannelSuffix, getCodec());
+                binaryMessenger, "dev.flutter.pigeon.google_maps_flutter_android.MapsApi.replaceGroundOverlay" + messageChannelSuffix, getCodec());
         if (api != null) {
           channel.setMessageHandler(
               (message, reply) -> {
                 ArrayList<Object> wrapped = new ArrayList<>();
                 ArrayList<Object> args = (ArrayList<Object>) message;
-                String overlayIdArg = (String) args.get(0);
-                Object imageArg = args.get(1);
+                PlatformGroundOverlay overlayArg = (PlatformGroundOverlay) args.get(0);
                 try {
-                  api.setOverlayImage(overlayIdArg, imageArg);
+                  api.replaceGroundOverlay(overlayArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

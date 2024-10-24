@@ -95,6 +95,7 @@ class GroundOverlaysController {
     if (groundOverlayController != null) {
       Convert.interpretGroundOverlayOptions(groundOverlay, groundOverlayController, assetManager, density);
     }
+      
   }
 
   void removeGroundOverlays(@NonNull List<String> groundOverlaysToRemove) {
@@ -106,13 +107,23 @@ class GroundOverlaysController {
       if (rawGroundOverlayId == null) {
         continue;
       }
-      String groundOverlayId = (String) rawGroundOverlayId;
-      final GroundOverlayController groundOverlayController = groundOverlayIdToController.remove(groundOverlayId);
-      if (groundOverlayController != null) {
-        groundOverlayController.remove();
-        googleMapsGroundOverlayIdToDartOverlayId.remove(groundOverlayController.getGoogleMapsGroundOverlayId());
-      }
+      removeGroundOverlay(rawGroundOverlayId);
+        
     }
+  }
+  
+  void removeGroundOverlay(String rawGroundOverlayId){
+    String groundOverlayId = (String) rawGroundOverlayId;
+    final GroundOverlayController groundOverlayController = groundOverlayIdToController.remove(groundOverlayId);
+    if (groundOverlayController != null) {
+      groundOverlayController.remove();
+      googleMapsGroundOverlayIdToDartOverlayId.remove(groundOverlayController.getGoogleMapsGroundOverlayId());
+    }
+  }
+  void replaceGroundOverlay(Messages.PlatformGroundOverlay groundOverlay){
+    String groundOverlayId = getGroundOverlayId(groundOverlay);
+    removeGroundOverlay(groundOverlayId);
+    addGroundOverlay(groundOverlay);
   }
 
   @SuppressWarnings("unchecked")
